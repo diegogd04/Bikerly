@@ -7,6 +7,15 @@ android {
     namespace = "edu.iesam.bikerly"
     compileSdk = 36
 
+    packaging {
+        resources {
+            excludes += setOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md"
+            )
+        }
+    }
+
     defaultConfig {
         applicationId = "edu.iesam.bikerly"
         minSdk = 26

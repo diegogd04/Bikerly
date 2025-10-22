@@ -2,10 +2,12 @@ package edu.iesam.bikerly.data
 
 import edu.iesam.bikerly.data.local.MotorbikeMockLocalDataSource
 import edu.iesam.bikerly.domain.Motorbike
+import edu.iesam.bikerly.domain.MotorbikeRepository
 
-class MotorbikeDataRepository(private val local: MotorbikeMockLocalDataSource) {
+class MotorbikeDataRepository(private val local: MotorbikeMockLocalDataSource) :
+    MotorbikeRepository {
 
-    fun getMotorbikeList(): List<Motorbike> {
+    override fun getMotorbikeList(): List<Motorbike> {
         return local.getMotorbikeList()
     }
 }
