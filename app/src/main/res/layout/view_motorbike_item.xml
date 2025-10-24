@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout style="@style/linear_layout_vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            style="@style/motorbike_item_image"
+            tools:src="@tools:sample/avatars" />
+
+        <LinearLayout style="@style/motorbike_container_information">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/motorbike_make"
+                tools:text="Make" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/motorbike_model"
+                tools:text="Model" />
+
+            <LinearLayout style="@style/motorbike_container_specs">
+
+                <com.google.android.material.card.MaterialCardView style="@style/motorbike_spec_container">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/motorbike_spec_text"
+                        tools:text="Year" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView style="@style/motorbike_spec_container">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/motorbike_spec_text"
+                        tools:text="Type" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView style="@style/motorbike_spec_container">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/motorbike_spec_text"
+                        tools:text="Displacement" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
