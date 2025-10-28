@@ -8,6 +8,13 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <!-- Motorbike List -->
+    <style name="motorbike_list_toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="titleCentered">true</item>
+    </style>
+
     <!-- Motorbike Item -->
     <style name="motorbike_item_image">
         <item name="android:layout_width">match_parent</item>
