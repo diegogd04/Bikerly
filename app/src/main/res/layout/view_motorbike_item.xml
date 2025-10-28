@@ -13,10 +13,12 @@
         <LinearLayout style="@style/motorbike_container_information">
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/make"
                 style="@style/motorbike_make"
                 tools:text="Make" />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/model"
                 style="@style/motorbike_model"
                 tools:text="Model" />
 
@@ -25,6 +27,7 @@
                 <com.google.android.material.card.MaterialCardView style="@style/motorbike_spec_container">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/year"
                         style="@style/motorbike_spec_text"
                         tools:text="Year" />
 
@@ -33,6 +36,7 @@
                 <com.google.android.material.card.MaterialCardView style="@style/motorbike_spec_container">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/type"
                         style="@style/motorbike_spec_text"
                         tools:text="Type" />
                 </com.google.android.material.card.MaterialCardView>
@@ -40,6 +44,7 @@
                 <com.google.android.material.card.MaterialCardView style="@style/motorbike_spec_container">
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/displacement"
                         style="@style/motorbike_spec_text"
                         tools:text="Displacement" />
 
