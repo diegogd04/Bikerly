@@ -59,6 +59,8 @@ dependencies {
     implementation(libs.lifecycle)
     implementation(libs.coroutines)
     implementation(libs.mockk)
+    implementation(libs.nav.fragment)
+    implementation(libs.nav.ui)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

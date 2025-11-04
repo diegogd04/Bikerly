@@ -13,6 +13,7 @@ constraintlayout = "2.2.1"
 livecycleVersion = "2.9.4"
 coroutinesVersion = "1.10.2"
 mockkVersion = "1.14.6"
+navVersion = "2.9.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -27,6 +28,8 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 lifecycle = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "livecycleVersion" }
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockkVersion" }
+nav-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navVersion" }
+nav-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
