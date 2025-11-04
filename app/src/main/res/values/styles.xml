@@ -12,10 +12,18 @@
     <style name="motorbike_list_toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/small_margin_padding</item>
         <item name="titleCentered">true</item>
     </style>
 
     <!-- Motorbike Item -->
+    <style name="motorbike_card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginVertical">@dimen/small_margin_padding</item>
+        <item name="android:layout_marginHorizontal">@dimen/medium_margin_padding</item>
+    </style>
+
     <style name="motorbike_item_image">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/motorbike_item_image_height</item>
@@ -45,13 +53,11 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/medium_margin_padding</item>
         <item name="android:gravity">center</item>
-        <item name="android:orientation">horizontal</item>
     </style>
 
     <style name="motorbike_spec_container">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginHorizontal">@dimen/big_margin_padding</item>
     </style>
 
     <style name="motorbike_spec_text">
