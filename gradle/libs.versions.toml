@@ -14,6 +14,7 @@ livecycleVersion = "2.9.4"
 coroutinesVersion = "1.10.2"
 mockkVersion = "1.14.6"
 navVersion = "2.9.5"
+coilVerion = "3.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -30,6 +31,8 @@ coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core"
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockkVersion" }
 nav-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navVersion" }
 nav-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navVersion" }
+coil = { group = "io.coil-kt.coil3", name = "coil", version.ref = "coilVerion" }
+coil-network = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coilVerion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

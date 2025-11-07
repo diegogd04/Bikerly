@@ -7,6 +7,7 @@
     <LinearLayout style="@style/linear_layout_vertical">
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image"
             style="@style/motorbike_item_image"
             tools:src="@tools:sample/avatars" />
 

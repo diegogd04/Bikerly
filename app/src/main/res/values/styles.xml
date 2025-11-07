@@ -27,6 +27,7 @@
     <style name="motorbike_item_image">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/motorbike_item_image_height</item>
+        <item name="android:scaleType">centerCrop</item>
     </style>
 
     <style name="motorbike_container_information" parent="linear_layout_vertical">
