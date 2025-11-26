@@ -20,6 +20,7 @@ class MotorbikeListViewModel(
     val uiState: LiveData<UiState> = _uiState
 
     fun loadMotorbikeList() {
+        _uiState.postValue(UiState(isLoading = true))
         viewModelScope.launch(Dispatchers.IO) {
             val motorbikeList = getMotorbikeListUseCase()
             motorbikeList.fold(
@@ -30,6 +31,7 @@ class MotorbikeListViewModel(
     }
 
     data class UiState(
+        val isLoading: Boolean = false,
         var motorbikeList: List<Motorbike> = emptyList(),
         val error: ErrorApp? = null
     )

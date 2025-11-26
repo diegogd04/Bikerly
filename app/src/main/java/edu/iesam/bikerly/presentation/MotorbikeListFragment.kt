@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.faltenreich.skeletonlayout.Skeleton
+import com.faltenreich.skeletonlayout.applySkeleton
+import edu.iesam.bikerly.R
 import edu.iesam.bikerly.databinding.FragmentMotorbikeListBinding
 import edu.iesam.bikerly.domain.Motorbike
 import edu.iesam.bikerly.presentation.adapter.MotorbikeAdapter
@@ -18,6 +21,7 @@ class MotorbikeListFragment : Fragment() {
     val binding get() = _binding!!
     private val motorbikeAdapter = MotorbikeAdapter()
     private val viewModel: MotorbikeListViewModel by viewModel()
+    private lateinit var skeleton: Skeleton
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +39,7 @@ class MotorbikeListFragment : Fragment() {
                 layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 adapter = motorbikeAdapter
+                skeleton = applySkeleton(R.layout.view_motorbike_item, 8)
             }
         }
     }
@@ -48,6 +53,7 @@ class MotorbikeListFragment : Fragment() {
 
     private fun setUpObserver() {
         val observer = Observer<MotorbikeListViewModel.UiState> { uiState ->
+            bindLoading(uiState.isLoading)
             bindData(uiState.motorbikeList)
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
@@ -55,5 +61,13 @@ class MotorbikeListFragment : Fragment() {
 
     private fun bindData(motorbikeList: List<Motorbike>) {
         motorbikeAdapter.submitList(motorbikeList)
+    }
+
+    private fun bindLoading(loading: Boolean) {
+        if (loading) {
+            skeleton.showSkeleton()
+        } else {
+            skeleton.showOriginal()
+        }
     }
 }

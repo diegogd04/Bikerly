@@ -18,6 +18,7 @@ coilVerion = "3.3.0"
 koinVersion = "4.1.1"
 koinAnnotationsVersion = "2.3.1"
 kspVersion = "2.2.10-2.0.2"
+skeletonVersion = "6.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -39,6 +40,7 @@ coil-network = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", versi
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinVersion" }
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koinAnnotationsVersion" }
 koin-ksp = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koinAnnotationsVersion" }
+skeleton = { group = "com.faltenreich", name = "skeletonlayout", version.ref = "skeletonVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
