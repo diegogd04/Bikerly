@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -63,6 +64,9 @@ dependencies {
     implementation(libs.nav.ui)
     implementation(libs.coil)
     implementation(libs.coil.network)
+    implementation(libs.koin.android)
+    implementation(libs.koin.annotations)
+    ksp(libs.koin.ksp)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

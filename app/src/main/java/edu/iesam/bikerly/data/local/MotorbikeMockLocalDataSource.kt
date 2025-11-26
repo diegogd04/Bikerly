@@ -2,7 +2,9 @@ package edu.iesam.bikerly.data.local
 
 import androidx.core.net.toUri
 import edu.iesam.bikerly.domain.Motorbike
+import org.koin.core.annotation.Single
 
+@Single
 class MotorbikeMockLocalDataSource {
 
     private val motorbikes = listOf(

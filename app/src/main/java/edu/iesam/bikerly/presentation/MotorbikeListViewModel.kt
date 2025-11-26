@@ -8,7 +8,9 @@ import edu.iesam.bikerly.domain.GetMotorbikeListUseCase
 import edu.iesam.bikerly.domain.Motorbike
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.android.annotation.KoinViewModel
 
+@KoinViewModel
 class MotorbikeListViewModel(
     private val getMotorbikeListUseCase: GetMotorbikeListUseCase
 ) : ViewModel() {
