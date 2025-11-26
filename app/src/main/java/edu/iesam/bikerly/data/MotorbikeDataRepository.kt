@@ -9,7 +9,7 @@ import org.koin.core.annotation.Single
 class MotorbikeDataRepository(private val local: MotorbikeMockLocalDataSource) :
     MotorbikeRepository {
 
-    override fun getMotorbikeList(): List<Motorbike> {
+    override fun getMotorbikeList(): Result<List<Motorbike>> {
         return local.getMotorbikeList()
     }
 }

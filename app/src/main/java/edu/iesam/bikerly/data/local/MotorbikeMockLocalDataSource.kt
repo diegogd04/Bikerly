@@ -1,6 +1,7 @@
 package edu.iesam.bikerly.data.local
 
 import androidx.core.net.toUri
+import edu.iesam.bikerly.app.domain.ErrorApp
 import edu.iesam.bikerly.domain.Motorbike
 import org.koin.core.annotation.Single
 
@@ -55,7 +56,11 @@ class MotorbikeMockLocalDataSource {
         )
     )
 
-    fun getMotorbikeList(): List<Motorbike> {
-        return motorbikes
+    fun getMotorbikeList(): Result<List<Motorbike>> {
+        return if (motorbikes.isNotEmpty()) {
+            Result.success(motorbikes)
+        } else {
+            Result.failure(ErrorApp.DataError)
+        }
     }
 }
