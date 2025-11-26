@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/motorbike_card">
+
+    <LinearLayout style="@style/linear_layout_vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image"
+            style="@style/motorbike_item_image"
+            tools:src="@tools:sample/avatars" />
+
+        <LinearLayout style="@style/motorbike_container_information">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/make"
+                style="@style/motorbike_make"
+                tools:text="@string/motorbike_item_make_text_tools" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/model"
+                style="@style/motorbike_model"
+                tools:text="@string/motorbike_item_model_text_tools" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/motorbike_container_specs">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/year_container"
+                    style="@style/motorbike_spec_container"
+                    app:layout_constraintEnd_toStartOf="@id/type_container"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/year"
+                        style="@style/motorbike_spec_text"
+                        tools:text="@string/motorbike_item_year_text_tools" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/type_container"
+                    style="@style/motorbike_spec_container"
+                    app:layout_constraintEnd_toStartOf="@id/displacement_container"
+                    app:layout_constraintStart_toEndOf="@id/year_container"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/type"
+                        style="@style/motorbike_spec_text"
+                        tools:text="@string/motorbike_item_type_text_tools" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/displacement_container"
+                    style="@style/motorbike_spec_container"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/type_container"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/displacement"
+                        style="@style/motorbike_spec_text"
+                        tools:text="@string/motorbike_item_displacement_text_tools" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

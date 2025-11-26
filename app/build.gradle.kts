@@ -1,11 +1,21 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
     namespace = "edu.iesam.bikerly"
     compileSdk = 36
+
+    packaging {
+        resources {
+            excludes += setOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md"
+            )
+        }
+    }
 
     defaultConfig {
         applicationId = "edu.iesam.bikerly"
@@ -33,6 +43,10 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -42,6 +56,19 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    implementation(libs.lifecycle)
+    implementation(libs.coroutines)
+    implementation(libs.mockk)
+    implementation(libs.nav.fragment)
+    implementation(libs.nav.ui)
+    implementation(libs.coil)
+    implementation(libs.coil.network)
+    implementation(libs.koin.android)
+    implementation(libs.koin.annotations)
+    ksp(libs.koin.ksp)
+    implementation(libs.skeleton)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

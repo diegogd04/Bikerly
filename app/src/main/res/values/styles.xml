@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Commons -->
+    <style name="linear_layout_vertical">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- Motorbike List -->
+    <style name="motorbike_list_toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/small_margin_padding</item>
+        <item name="titleCentered">true</item>
+    </style>
+
+    <!-- Motorbike Item -->
+    <style name="motorbike_card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginVertical">@dimen/small_margin_padding</item>
+        <item name="android:layout_marginHorizontal">@dimen/medium_margin_padding</item>
+    </style>
+
+    <style name="motorbike_item_image">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/motorbike_item_image_height</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="motorbike_container_information" parent="linear_layout_vertical">
+        <item name="android:padding">@dimen/medium_margin_padding</item>
+    </style>
+
+    <style name="motorbike_make">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/motorbike_make_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="motorbike_model">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/small_margin_padding</item>
+        <item name="android:layout_marginTop">@dimen/small_margin_padding</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="motorbike_container_specs">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/medium_margin_padding</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="motorbike_spec_container">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="motorbike_spec_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingHorizontal">@dimen/small_margin_padding</item>
+        <item name="android:paddingVertical">@dimen/tiny_margin_padding</item>
+    </style>
+
+</resources>
