@@ -12,7 +12,7 @@
     <style name="motorbike_list_toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/small_margin_padding</item>
+        <item name="android:layout_marginTop">@dimen/medium_margin_padding</item>
         <item name="titleCentered">true</item>
     </style>
 

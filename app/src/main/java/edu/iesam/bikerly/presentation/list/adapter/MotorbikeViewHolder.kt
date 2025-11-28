@@ -1,4 +1,4 @@
-package edu.iesam.bikerly.presentation.adapter
+package edu.iesam.bikerly.presentation.list.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +10,7 @@ class MotorbikeViewHolder(private val view: View) : RecyclerView.ViewHolder(view
 
     private lateinit var binding: ViewMotorbikeItemBinding
 
-    fun bind(item: Motorbike) {
+    fun bind(item: Motorbike, onclick: (String) -> Unit) {
         binding = ViewMotorbikeItemBinding.bind(view)
 
         binding.apply {
@@ -20,6 +20,9 @@ class MotorbikeViewHolder(private val view: View) : RecyclerView.ViewHolder(view
             type.text = item.type
             displacement.text = item.displacement
             image.loadUrl(item.img)
+            motorbikeCard.setOnClickListener {
+                onclick(item.id)
+            }
         }
     }
 }

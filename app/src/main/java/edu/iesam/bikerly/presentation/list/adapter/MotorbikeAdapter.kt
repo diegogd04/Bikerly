@@ -1,4 +1,4 @@
-package edu.iesam.bikerly.presentation.adapter
+package edu.iesam.bikerly.presentation.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.ListAdapter
 import edu.iesam.bikerly.R
 import edu.iesam.bikerly.domain.Motorbike
 
-class MotorbikeAdapter : ListAdapter<Motorbike, MotorbikeViewHolder>(MotorbikeDiffUtil()) {
+class MotorbikeAdapter(private val onClick: (String) -> Unit) :
+    ListAdapter<Motorbike, MotorbikeViewHolder>(MotorbikeDiffUtil()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,6 +27,6 @@ class MotorbikeAdapter : ListAdapter<Motorbike, MotorbikeViewHolder>(MotorbikeDi
         holder: MotorbikeViewHolder,
         position: Int
     ) {
-        holder.bind(currentList[position])
+        holder.bind(currentList[position], onClick)
     }
 }

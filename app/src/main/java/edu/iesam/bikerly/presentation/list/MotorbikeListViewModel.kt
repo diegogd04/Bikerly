@@ -1,4 +1,4 @@
-package edu.iesam.bikerly.presentation
+package edu.iesam.bikerly.presentation.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

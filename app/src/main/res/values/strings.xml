@@ -3,6 +3,7 @@
 
     <!-- Commons -->
     <string name="motorbike_list_fragment_label">Listado de motos</string>
+    <string name="motorbike_detail_fragment_label">Detalle de moto</string>
 
     <!-- Motorbike Item -->
     <string name="motorbike_item_make_text_tools">Make</string>

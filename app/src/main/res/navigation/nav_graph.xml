@@ -7,8 +7,27 @@
 
     <fragment
         android:id="@+id/motorbike_list_fragment"
-        android:name="edu.iesam.bikerly.presentation.MotorbikeListFragment"
+        android:name="edu.iesam.bikerly.presentation.list.MotorbikeListFragment"
         android:label="@string/motorbike_list_fragment_label"
-        tools:layout="@layout/fragment_motorbike_list" />
+        tools:layout="@layout/fragment_motorbike_list">
+
+        <action
+            android:id="@+id/action_from_motorbike_list_to_motorbike_detail"
+            app:destination="@+id/motorbike_detail_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/motorbike_detail_fragment"
+        android:name="edu.iesam.bikerly.presentation.detail.MotorbikeDetailFragment"
+        android:label="@string/motorbike_detail_fragment_label"
+        tools:layout="@layout/fragment_motorbike_detail">
+
+        <argument
+            android:name="motorbikeId"
+            app:argType="string"
+            app:nullable="false" />
+
+    </fragment>
 
 </navigation>

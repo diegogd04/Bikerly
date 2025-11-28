@@ -55,12 +55,21 @@ class MotorbikeMockLocalDataSource {
         )
     )
 
+    private val motorbikeList = motorbikeMockList.map { it.toModel() }
+
     fun getMotorbikeList(): Result<List<Motorbike>> {
-        val motorbikeList = motorbikeMockList.map {
-            it.toModel()
-        }
         return if (motorbikeList.isNotEmpty()) {
             Result.success(motorbikeList)
+        } else {
+            Result.failure(ErrorApp.DataError)
+        }
+    }
+
+    fun getMotorbikeById(id: String): Result<Motorbike> {
+        val motorbike = motorbikeList.find { it.id == id }
+
+        return if (motorbike != null) {
+            Result.success(motorbike)
         } else {
             Result.failure(ErrorApp.DataError)
         }

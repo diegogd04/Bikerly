@@ -1,4 +1,4 @@
-package edu.iesam.bikerly.presentation.adapter
+package edu.iesam.bikerly.presentation.list.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import edu.iesam.bikerly.domain.Motorbike

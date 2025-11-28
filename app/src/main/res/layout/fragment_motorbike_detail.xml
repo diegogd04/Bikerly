@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/view_toolbar" />
+
+    <com.faltenreich.skeletonlayout.SkeletonLayout
+        android:id="@+id/skeleton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <LinearLayout
+            android:id="@+id/motorbike_card"
+            style="@style/linear_layout_vertical">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image"
+                style="@style/motorbike_item_image"
+                tools:src="@tools:sample/avatars" />
+
+            <LinearLayout style="@style/motorbike_container_information">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/make"
+                    style="@style/motorbike_make"
+                    tools:text="Marca" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/model"
+                    style="@style/motorbike_model"
+                    tools:text="Modelo" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout style="@style/motorbike_container_specs">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/year_container"
+                        style="@style/motorbike_spec_container"
+                        app:layout_constraintEnd_toStartOf="@id/type_container"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/year"
+                            style="@style/motorbike_spec_text"
+                            tools:text="@string/motorbike_item_year_text_tools" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/type_container"
+                        style="@style/motorbike_spec_container"
+                        app:layout_constraintEnd_toStartOf="@id/displacement_container"
+                        app:layout_constraintStart_toEndOf="@id/year_container"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/type"
+                            style="@style/motorbike_spec_text"
+                            tools:text="@string/motorbike_item_type_text_tools" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/displacement_container"
+                        style="@style/motorbike_spec_container"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/type_container"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/displacement"
+                            style="@style/motorbike_spec_text"
+                            tools:text="@string/motorbike_item_displacement_text_tools" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.faltenreich.skeletonlayout.SkeletonLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
