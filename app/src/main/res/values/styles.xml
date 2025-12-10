@@ -8,6 +8,11 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="linear_layout_horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
     <!-- Motorbike List -->
     <style name="motorbike_list_toolbar">
         <item name="android:layout_width">match_parent</item>
@@ -37,8 +42,11 @@
     <style name="motorbike_make">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/motorbike_make_size</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="motorbike_make_list" parent="motorbike_make">
+        <item name="android:textSize">@dimen/text_normal_size</item>
     </style>
 
     <style name="motorbike_model">
@@ -66,6 +74,43 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:paddingHorizontal">@dimen/small_margin_padding</item>
         <item name="android:paddingVertical">@dimen/tiny_margin_padding</item>
+    </style>
+
+    <!-- Motorbike Detail -->
+    <style name="motorbike_spec_container_detail" parent="linear_layout_horizontal">
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="motorbike_make_detail" parent="motorbike_make">
+        <item name="android:textSize">@dimen/text_big_size</item>
+    </style>
+
+    <style name="motorbike_model_detail" parent="motorbike_model">
+        <item name="android:textSize">@dimen/text_normal_size</item>
+    </style>
+
+    <style name="motorbike_specs_container_detail" parent="linear_layout_vertical">
+        <item name="android:layout_marginTop">@dimen/giant_margin_padding</item>
+    </style>
+
+    <style name="motorbike_spec">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_small_size</item>
+    </style>
+
+    <style name="motorbike_spec_ic">
+        <item name="android:layout_width">@dimen/motorbike_spec_ic_size</item>
+        <item name="android:layout_height">@dimen/motorbike_spec_ic_size</item>
+    </style>
+
+    <style name="motorbike_spec_title" parent="motorbike_spec">
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginHorizontal">@dimen/small_margin_padding</item>
+    </style>
+
+    <style name="motorbike_spec_hint" parent="motorbike_spec">
+        <item name="android:layout_marginStart">@dimen/tiny_margin_padding</item>
     </style>
 
 </resources>

@@ -16,13 +16,13 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/make"
-                style="@style/motorbike_make"
-                tools:text="@string/motorbike_item_make_text_tools" />
+                style="@style/motorbike_make_list"
+                tools:text="@string/motorbike_make_text_tools" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/model"
                 style="@style/motorbike_model"
-                tools:text="@string/motorbike_item_model_text_tools" />
+                tools:text="@string/motorbike_model_text_tools" />
 
             <androidx.constraintlayout.widget.ConstraintLayout style="@style/motorbike_container_specs">
 

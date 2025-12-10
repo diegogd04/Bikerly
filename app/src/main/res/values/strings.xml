@@ -6,10 +6,18 @@
     <string name="motorbike_detail_fragment_label">Detalle de moto</string>
 
     <!-- Motorbike Item -->
-    <string name="motorbike_item_make_text_tools">Make</string>
-    <string name="motorbike_item_model_text_tools">Model</string>
+    <string name="motorbike_make_text_tools">Make</string>
+    <string name="motorbike_model_text_tools">Model</string>
     <string name="motorbike_item_year_text_tools">Year</string>
     <string name="motorbike_item_type_text_tools">Type</string>
     <string name="motorbike_item_displacement_text_tools">Displacement</string>
+
+    <!-- Motorbike Detail -->
+    <string name="motorbike_detail_hint_year_text">Año:</string>
+    <string name="motorbike_detail_hint_type_text">Tipo:</string>
+    <string name="motorbike_detail_hint_displacement_text">Potencia:</string>
+    <string name="motorbike_detail_tool_year_text">0000</string>
+    <string name="motorbike_detail_tool_type_text">type</string>
+    <string name="motorbike_detail_tool_displacement_text">0000.0</string>
 
 </resources>

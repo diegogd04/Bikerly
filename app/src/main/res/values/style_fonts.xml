@@ -2,6 +2,8 @@
 <resources>
 
     <!-- Motorbike Item -->
-    <dimen name="motorbike_make_size">20sp</dimen>
+    <dimen name="text_small_size">17sp</dimen>
+    <dimen name="text_normal_size">20sp</dimen>
+    <dimen name="text_big_size">40sp</dimen>
 
 </resources>
