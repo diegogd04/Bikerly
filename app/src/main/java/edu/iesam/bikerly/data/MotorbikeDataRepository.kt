@@ -12,4 +12,8 @@ class MotorbikeDataRepository(private val local: MotorbikeMockLocalDataSource) :
     override fun getMotorbikeList(): Result<List<Motorbike>> {
         return local.getMotorbikeList()
     }
+
+    override fun getMotorbikeById(id: String): Result<Motorbike> {
+        return local.getMotorbikeById(id)
+    }
 }

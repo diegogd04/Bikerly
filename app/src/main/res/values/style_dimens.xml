@@ -7,8 +7,12 @@
     <dimen name="small_margin_padding">10dp</dimen>
     <dimen name="medium_margin_padding">20dp</dimen>
     <dimen name="big_margin_padding">25dp</dimen>
+    <dimen name="giant_margin_padding">40dp</dimen>
 
     <!-- Motorbike Item -->
     <dimen name="motorbike_item_image_height">200dp</dimen>
+
+    <!-- Motorbike Detail -->
+    <dimen name="motorbike_spec_ic_size">30dp</dimen>
 
 </resources>
