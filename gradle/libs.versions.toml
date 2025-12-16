@@ -12,7 +12,7 @@ constraintlayout = "2.2.1"
 
 livecycleVersion = "2.10.0"
 coroutinesVersion = "1.10.2"
-mockkVersion = "1.14.6"
+mockkVersion = "1.14.7"
 navVersion = "2.9.6"
 coilVerion = "3.3.0"
 koinVersion = "4.1.1"
@@ -20,6 +20,10 @@ koinAnnotationsVersion = "2.3.1"
 kspVersion = "2.2.10-2.0.2"
 skeletonVersion = "6.0.0"
 safeargsVersion = "2.9.6"
+retrofitVersion = "3.0.0"
+gsonVersion = "2.13.2"
+gsonConverterVersion = "3.0.0"
+okhttpVersion = "5.3.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,6 +46,10 @@ koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinVers
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koinAnnotationsVersion" }
 koin-ksp = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koinAnnotationsVersion" }
 skeleton = { group = "com.faltenreich", name = "skeletonlayout", version.ref = "skeletonVersion" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofitVersion" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gsonVersion" }
+gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gsonConverterVersion" }
+okhttp = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttpVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
