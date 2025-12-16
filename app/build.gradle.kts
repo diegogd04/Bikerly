@@ -69,6 +69,10 @@ dependencies {
     implementation(libs.koin.annotations)
     ksp(libs.koin.ksp)
     implementation(libs.skeleton)
+    implementation(libs.retrofit)
+    implementation(libs.gson)
+    implementation(libs.gson.converter)
+    implementation(libs.okhttp)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
