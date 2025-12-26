@@ -11,7 +11,7 @@ class GetMotorbikeByIdUseCaseTest {
     fun `When invoke then return motorbike by id`() {
         val motorbikeRepositoryMock = mockk<MotorbikeDataRepository>(relaxed = true)
         val getMotorbikeByIdUseCase = GetMotorbikeByIdUseCase(motorbikeRepositoryMock)
-        val id = "1234"
+        val id = 1234
 
         getMotorbikeByIdUseCase(id)
 

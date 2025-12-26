@@ -9,7 +9,7 @@ class MotorbikeMockLocalDataSource {
 
     private val motorbikeMockList = listOf(
         MotorbikeMockModel(
-            "1",
+            1,
             "Kawasaki",
             "Ninja 650",
             "2022",
@@ -18,7 +18,7 @@ class MotorbikeMockLocalDataSource {
             "https://cdn.dealerspike.com/imglib/v1/800x600/imglib/Assets/Inventory/07/7C/077C65E3-5BF7-4435-8BCA-D28995829246.jpg"
         ),
         MotorbikeMockModel(
-            "2",
+            2,
             "Kawasaki",
             "KX250",
             "2022",
@@ -27,7 +27,7 @@ class MotorbikeMockLocalDataSource {
             "https://storage.kawasaki.eu/public/kawasaki.eu/en-EU/model/imported/BE00000340EBFBEAA5.jpg"
         ),
         MotorbikeMockModel(
-            "3",
+            3,
             "Ducati",
             "DesertX",
             "2022",
@@ -36,7 +36,7 @@ class MotorbikeMockLocalDataSource {
             "https://mcn-images.bauersecure.com/wp-images/186156/ducati-desertx-01.jpg"
         ),
         MotorbikeMockModel(
-            "4",
+            4,
             "Ducati",
             "Panigale V2 Bayliss",
             "2022",
@@ -45,7 +45,7 @@ class MotorbikeMockLocalDataSource {
             "https://res.cloudinary.com/twisted-road/image/upload/c_fill,g_auto,h_600,w_900,q_auto,f_auto/v1661024597/twisted_api/production/vehicles/uxdmhg8xqgwgimmxl0pf.jpg"
         ),
         MotorbikeMockModel(
-            "5",
+            5,
             "BMW",
             "S 1000 RR",
             "2022",
@@ -65,7 +65,7 @@ class MotorbikeMockLocalDataSource {
         }
     }
 
-    fun getMotorbikeById(id: String): Result<Motorbike> {
+    fun getMotorbikeById(id: Int): Result<Motorbike> {
         val motorbike = motorbikeList.find { it.id == id }
 
         return if (motorbike != null) {

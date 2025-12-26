@@ -1,8 +1,7 @@
-package edu.iesam.bikerly.data.remote
+package edu.iesam.bikerly.data.remote.api
 
 import edu.iesam.bikerly.app.domain.ErrorApp
-import edu.iesam.bikerly.data.remote.api.MotorbikeApiService
-import edu.iesam.bikerly.data.remote.api.toModel
+import edu.iesam.bikerly.data.remote.toModel
 import edu.iesam.bikerly.domain.Motorbike
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Single
-class MotorbikeRemoteDataSource {
+class MotorbikeApiRemoteDataSource {
 
     private val baseUrl = "http://bikerly.up.railway.app/"
 
@@ -33,9 +32,9 @@ class MotorbikeRemoteDataSource {
 
         val motorbikeListApiModel = service.getMotorbikeList()
 
-        val motorbikeList = motorbikeListApiModel.map {
-            it.toModel()
-        }
+        val motorbikeList = motorbikeListApiModel
+            .map { it.toModel() }
+            .sortedByDescending { it.id }
 
         return if (motorbikeList.isNotEmpty()) {
             Result.success(motorbikeList)

@@ -10,7 +10,7 @@ class MotorbikeViewHolder(private val view: View) : RecyclerView.ViewHolder(view
 
     private lateinit var binding: ViewMotorbikeItemBinding
 
-    fun bind(item: Motorbike, onclick: (String) -> Unit) {
+    fun bind(item: Motorbike, onclick: (Int) -> Unit) {
         binding = ViewMotorbikeItemBinding.bind(view)
 
         binding.apply {
