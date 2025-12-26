@@ -3,7 +3,7 @@ package edu.iesam.bikerly.domain
 import android.net.Uri
 
 data class Motorbike(
-    val id: String,
+    val id: Int,
     val make: String,
     val model: String,
     val year: String,

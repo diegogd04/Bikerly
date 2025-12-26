@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import edu.iesam.bikerly.R
 import edu.iesam.bikerly.domain.Motorbike
 
-class MotorbikeAdapter(private val onClick: (String) -> Unit) :
+class MotorbikeAdapter(private val onClick: (Int) -> Unit) :
     ListAdapter<Motorbike, MotorbikeViewHolder>(MotorbikeDiffUtil()) {
 
     override fun onCreateViewHolder(

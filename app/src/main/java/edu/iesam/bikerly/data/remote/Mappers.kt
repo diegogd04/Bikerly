@@ -1,9 +1,9 @@
-package edu.iesam.bikerly.data.remote.api
+package edu.iesam.bikerly.data.remote
 
 import androidx.core.net.toUri
 import edu.iesam.bikerly.domain.Motorbike
 
-fun MotorbikeApiModel.toModel(): Motorbike {
+fun MotorbikeRemoteModel.toModel(): Motorbike {
     return Motorbike(
         this.id,
         this.make,

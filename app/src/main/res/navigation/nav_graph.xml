@@ -25,7 +25,7 @@
 
         <argument
             android:name="motorbikeId"
-            app:argType="string"
+            app:argType="integer"
             app:nullable="false" />
 
     </fragment>

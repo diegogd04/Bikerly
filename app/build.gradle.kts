@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.safeargs)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -73,6 +74,7 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.gson.converter)
     implementation(libs.okhttp)
+    implementation(libs.firebase.firestore)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

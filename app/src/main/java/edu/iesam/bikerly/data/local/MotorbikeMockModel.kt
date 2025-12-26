@@ -1,7 +1,7 @@
 package edu.iesam.bikerly.data.local
 
 data class MotorbikeMockModel(
-    val id: String,
+    val id: Int,
     val make: String,
     val model: String,
     val year: String,

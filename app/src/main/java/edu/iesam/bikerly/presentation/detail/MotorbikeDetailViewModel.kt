@@ -20,7 +20,7 @@ class MotorbikeDetailViewModel(
     private val _uiState = MutableLiveData<UiState>()
     val uiState: LiveData<UiState> = _uiState
 
-    fun loadMotorbikeById(id: String) {
+    fun loadMotorbikeById(id: Int) {
         _uiState.postValue(UiState(isLoading = true))
         viewModelScope.launch(Dispatchers.IO) {
             val motorbike = getMotorbikeByIdUseCase(id)
@@ -33,7 +33,7 @@ class MotorbikeDetailViewModel(
 
     data class UiState(
         val isLoading: Boolean = false,
-        val motorbike: Motorbike = Motorbike("", "", "", "", "", "", "".toUri()),
+        val motorbike: Motorbike = Motorbike(0, "", "", "", "", "", "".toUri()),
         val error: ErrorApp? = null
     )
 }
