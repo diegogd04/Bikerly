@@ -1,4 +1,4 @@
-package edu.iesam.bikerly.data.local
+package edu.iesam.bikerly.data.local.mock
 
 import edu.iesam.bikerly.app.domain.ErrorApp
 import edu.iesam.bikerly.domain.Motorbike

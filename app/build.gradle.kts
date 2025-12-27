@@ -75,6 +75,9 @@ dependencies {
     implementation(libs.gson.converter)
     implementation(libs.okhttp)
     implementation(libs.firebase.firestore)
+    implementation(libs.room.runtime)
+    ksp(libs.room.ksp)
+    implementation(libs.room.coroutines)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -1,4 +1,4 @@
-package edu.iesam.bikerly.data.local
+package edu.iesam.bikerly.data.local.mock
 
 data class MotorbikeMockModel(
     val id: Int,

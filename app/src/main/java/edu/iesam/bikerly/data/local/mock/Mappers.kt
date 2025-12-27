@@ -1,4 +1,4 @@
-package edu.iesam.bikerly.data.local
+package edu.iesam.bikerly.data.local.mock
 
 import androidx.core.net.toUri
 import edu.iesam.bikerly.domain.Motorbike
