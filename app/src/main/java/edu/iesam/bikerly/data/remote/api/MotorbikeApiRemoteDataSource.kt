@@ -14,11 +14,12 @@ class MotorbikeApiRemoteDataSource {
 
     private val baseUrl = "http://bikerly.up.railway.app/"
 
-    suspend fun getMotorbikeList(): Result<List<Motorbike>> {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
+    private val service: MotorbikeApiService by lazy {
+        val interceptor = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
 
-        val client: OkHttpClient = OkHttpClient.Builder()
+        val client = OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .build()
 
@@ -28,16 +29,26 @@ class MotorbikeApiRemoteDataSource {
             .client(client)
             .build()
 
-        val service: MotorbikeApiService = retrofit.create(MotorbikeApiService::class.java)
+        retrofit.create(MotorbikeApiService::class.java)
+    }
 
-        val motorbikeListApiModel = service.getMotorbikeList()
-
-        val motorbikeList = motorbikeListApiModel
+    suspend fun getMotorbikeList(): Result<List<Motorbike>> {
+        val motorbikeList = service.getMotorbikeList()
             .map { it.toModel() }
             .sortedByDescending { it.id }
 
         return if (motorbikeList.isNotEmpty()) {
             Result.success(motorbikeList)
+        } else {
+            Result.failure(ErrorApp.DataError)
+        }
+    }
+
+    suspend fun getMotorbikeById(motorbikeId: Int): Result<Motorbike> {
+        val motorbike = service.getMotorbikeById(motorbikeId).toModel()
+
+        return if (motorbike != null) {
+            Result.success(motorbike)
         } else {
             Result.failure(ErrorApp.DataError)
         }

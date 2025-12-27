@@ -27,13 +27,15 @@ class MotorbikeDataRepository(
 
             remoteMotorbikes.onSuccess { motorbikeList ->
                 roomLocal.saveMotorbikeList(motorbikeList)
+                Result.success(remoteMotorbikes)
             }
-
-            remoteMotorbikes
+            remoteMotorbikes.onFailure {
+                Result.failure<ErrorApp>(ErrorApp.DataError)
+            }
         }
     }
 
-    suspend fun getRemoteMotorbikeList(): Result<List<Motorbike>> {
+    private suspend fun getRemoteMotorbikeList(): Result<List<Motorbike>> {
         val firebaseRemoteData = firebaseRemote.getMotorbikeList()
 
         return if (firebaseRemoteData.isSuccess) {
@@ -56,7 +58,37 @@ class MotorbikeDataRepository(
         }
     }
 
-    override fun getMotorbikeById(id: Int): Result<Motorbike> {
-        return mockLocal.getMotorbikeById(id)
+    override suspend fun getMotorbikeById(motorbikeId: Int): Result<Motorbike> {
+        val localMotorbike = roomLocal.getMotorbikeById(motorbikeId)
+
+        return if (localMotorbike.isSuccess) {
+            localMotorbike
+        } else {
+            val remoteMotorbike = getRemoteMotorbikeById(motorbikeId)
+
+            remoteMotorbike.onSuccess {
+                Result.success(remoteMotorbike)
+            }
+            remoteMotorbike.onFailure {
+                Result.failure<ErrorApp>(ErrorApp.DataError)
+            }
+
+        }
+    }
+
+    private suspend fun getRemoteMotorbikeById(motorbikeId: Int): Result<Motorbike> {
+        val firebaseRemoteData = firebaseRemote.getMotorbikeById(motorbikeId)
+
+        return if (firebaseRemoteData.isSuccess) {
+            firebaseRemoteData
+        } else {
+            val apiRemoteData = apiRemote.getMotorbikeById(motorbikeId)
+
+            if (apiRemoteData.isSuccess) {
+                apiRemoteData
+            } else {
+                Result.failure(ErrorApp.DataError)
+            }
+        }
     }
 }

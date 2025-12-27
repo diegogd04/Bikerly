@@ -24,4 +24,14 @@ class MotorbikeDbLocalDataSource(private val motorbikeDao: MotorbikeDao) {
     fun saveMotorbikeList(motorbikeList: List<Motorbike>) {
         motorbikeDao.saveAll(*motorbikeList.map { it.toEntity() }.toTypedArray())
     }
+
+    fun getMotorbikeById(motorbikeId: Int): Result<Motorbike> {
+        val motorbike = motorbikeDao.getById(motorbikeId).toModel()
+
+        return if (motorbike != null) {
+            Result.success(motorbike)
+        } else {
+            Result.failure(ErrorApp.DataError)
+        }
+    }
 }

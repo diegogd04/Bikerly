@@ -44,4 +44,19 @@ class MotorbikeFirebaseRemoteDataSource(private val firestore: FirebaseFirestore
             Result.failure(ErrorApp.DataError)
         }
     }
+
+    suspend fun getMotorbikeById(motorbikeId: Int): Result<Motorbike> {
+        val motorbike = firestore.collection("motorbikes")
+            .whereEqualTo("id", motorbikeId)
+            .get()
+            .await()
+            .first()
+            .toObject(MotorbikeRemoteModel::class.java).toModel()
+
+        return if (motorbike != null) {
+            Result.success(motorbike)
+        } else {
+            Result.failure(ErrorApp.DataError)
+        }
+    }
 }
