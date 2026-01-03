@@ -15,7 +15,7 @@ fun MotorbikeEntity.toModel(): Motorbike {
     )
 }
 
-fun Motorbike.toEntity(): MotorbikeEntity {
+fun Motorbike.toEntity(ms: Long): MotorbikeEntity {
     return MotorbikeEntity(
         this.id,
         this.make,
@@ -23,6 +23,7 @@ fun Motorbike.toEntity(): MotorbikeEntity {
         this.year,
         this.type,
         this.displacement,
-        this.img.toString()
+        this.img.toString(),
+        ms
     )
 }
