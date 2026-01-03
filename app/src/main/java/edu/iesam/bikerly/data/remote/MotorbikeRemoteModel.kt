@@ -11,5 +11,6 @@ data class MotorbikeRemoteModel(
     @SerializedName("year") val year: String = "",
     @SerializedName("type") val type: String = "",
     @SerializedName("displacement") val displacement: String = "",
-    @SerializedName("img") val img: String = ""
+    @SerializedName("img") val img: String = "",
+    @SerializedName("created_at") val createdAt: Long = 0
 )
