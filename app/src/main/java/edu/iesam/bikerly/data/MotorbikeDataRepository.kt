@@ -20,19 +20,19 @@ class MotorbikeDataRepository(
     override suspend fun getMotorbikeList(): Result<List<Motorbike>> {
         val localMotorbikes = roomLocal.getMotorbikeList()
 
-        /*return if (localMotorbikes.isSuccess) {
+        return if (localMotorbikes.isSuccess) {
             localMotorbikes
-        } else {*/
+        } else {
             val remoteMotorbikes = getRemoteMotorbikeList()
 
-        return remoteMotorbikes.onSuccess { motorbikeList ->
+            remoteMotorbikes.onSuccess { motorbikeList ->
                 roomLocal.saveMotorbikeList(motorbikeList)
                 Result.success(remoteMotorbikes)
             }
             remoteMotorbikes.onFailure {
                 Result.failure<ErrorApp>(ErrorApp.DataError)
             }
-        /*}*/
+        }
     }
 
     private suspend fun getRemoteMotorbikeList(): Result<List<Motorbike>> {
