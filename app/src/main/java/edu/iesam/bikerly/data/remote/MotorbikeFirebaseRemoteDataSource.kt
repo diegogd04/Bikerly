@@ -35,7 +35,7 @@ class MotorbikeFirebaseRemoteDataSource(private val firestore: FirebaseFirestore
         }
     }
 
-    suspend fun getMotorbikeList(): Result<List<Motorbike>> {
+    suspend fun getMotorbikeList(): Result<List<MotorbikeRemoteModel>> {
         val motorbikeFirebaseList =
             firestore.collection("motorbikes")
                 .orderBy("id", Query.Direction.DESCENDING)
@@ -46,17 +46,14 @@ class MotorbikeFirebaseRemoteDataSource(private val firestore: FirebaseFirestore
                 }
 
         return if (motorbikeFirebaseList.isNotEmpty()) {
-            if (motorbikeFirebaseList[0].createdAt.plus(REMOTE_TIME_CACHE) > System.currentTimeMillis()) {
-                val motorbikeList = motorbikeFirebaseList.map { motorbike ->
-                    motorbike.toModel()
-                }
-                Result.success(motorbikeList)
-            } else {
-                Result.failure(ErrorApp.DataError)
-            }
+            Result.success(motorbikeFirebaseList)
         } else {
             Result.failure(ErrorApp.DataError)
         }
+    }
+
+    fun isCacheValid(motorbikeList: List<MotorbikeRemoteModel>): Boolean {
+        return motorbikeList.first().createdAt.plus(REMOTE_TIME_CACHE) > System.currentTimeMillis()
     }
 
     suspend fun getMotorbikeById(motorbikeId: Int): Result<Motorbike> {

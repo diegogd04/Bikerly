@@ -5,6 +5,7 @@ import edu.iesam.bikerly.data.local.mock.MotorbikeMockLocalDataSource
 import edu.iesam.bikerly.data.local.room.MotorbikeDbLocalDataSource
 import edu.iesam.bikerly.data.remote.MotorbikeFirebaseRemoteDataSource
 import edu.iesam.bikerly.data.remote.api.MotorbikeApiRemoteDataSource
+import edu.iesam.bikerly.data.remote.toModel
 import edu.iesam.bikerly.domain.Motorbike
 import edu.iesam.bikerly.domain.MotorbikeRepository
 import org.koin.core.annotation.Single
@@ -25,7 +26,7 @@ class MotorbikeDataRepository(
         } else {
             val remoteMotorbikes = getRemoteMotorbikeList()
 
-            remoteMotorbikes.onSuccess { motorbikeList ->
+            return remoteMotorbikes.onSuccess { motorbikeList ->
                 roomLocal.saveMotorbikeList(motorbikeList)
                 Result.success(remoteMotorbikes)
             }
@@ -36,25 +37,26 @@ class MotorbikeDataRepository(
     }
 
     private suspend fun getRemoteMotorbikeList(): Result<List<Motorbike>> {
-        val firebaseRemoteData = firebaseRemote.getMotorbikeList()
+        val firebaseList = firebaseRemote.getMotorbikeList().getOrNull()
+        val apiList = apiRemote.getMotorbikeList().getOrNull()
 
-        return if (firebaseRemoteData.isSuccess) {
-            firebaseRemoteData
-        } else {
-            val apiRemoteData = apiRemote.getMotorbikeList()
-
-            if (apiRemoteData.isSuccess) {
-                val motorbikeList = apiRemoteData.getOrNull()
-
-                if (motorbikeList != null) {
-                    firebaseRemote.setMotorbikeList(motorbikeList)
-                    apiRemoteData
+        return if (firebaseList != null) {
+            if (firebaseRemote.isCacheValid(firebaseList)) {
+                Result.success(firebaseList.map { it.toModel() })
+            } else {
+                if (apiList != null) {
+                    if (firebaseList.size == apiList.size) {
+                        Result.success(firebaseList.map { it.toModel() })
+                    } else {
+                        firebaseRemote.setMotorbikeList(apiList)
+                        Result.success(apiList)
+                    }
                 } else {
                     Result.failure(ErrorApp.DataError)
                 }
-            } else {
-                Result.failure(ErrorApp.DataError)
             }
+        } else {
+            Result.failure(ErrorApp.DataError)
         }
     }
 
