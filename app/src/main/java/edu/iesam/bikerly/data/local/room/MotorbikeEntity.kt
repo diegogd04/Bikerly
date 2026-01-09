@@ -12,5 +12,6 @@ data class MotorbikeEntity(
     @ColumnInfo(name = "year") val year: String,
     @ColumnInfo(name = "type") val type: String,
     @ColumnInfo(name = "displacement") val displacement: String,
-    @ColumnInfo(name = "img") val img: String
+    @ColumnInfo(name = "img") val img: String,
+    @ColumnInfo(name = "created_at") val createdAt: Long
 )

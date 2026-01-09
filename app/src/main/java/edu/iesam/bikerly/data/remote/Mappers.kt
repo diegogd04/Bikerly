@@ -14,3 +14,16 @@ fun MotorbikeRemoteModel.toModel(): Motorbike {
         this.img.toUri()
     )
 }
+
+fun Motorbike.toRemoteModel(ms: Long): MotorbikeRemoteModel {
+    return MotorbikeRemoteModel(
+        this.id,
+        this.make,
+        this.model,
+        this.year,
+        this.type,
+        this.displacement,
+        this.img.toString(),
+        ms
+    )
+}

@@ -2,6 +2,7 @@ package edu.iesam.bikerly.data.remote
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import edu.iesam.bikerly.app.di.REMOTE_TIME_CACHE
 import edu.iesam.bikerly.app.domain.ErrorApp
 import edu.iesam.bikerly.domain.Motorbike
 import kotlinx.coroutines.tasks.await
@@ -10,8 +11,14 @@ import org.koin.core.annotation.Single
 @Single
 class MotorbikeFirebaseRemoteDataSource(private val firestore: FirebaseFirestore) {
 
-    suspend fun setMotorbikeList(motorbikeList: List<Motorbike>) {
+    suspend fun setMotorbikeList(motorbikeApiList: List<Motorbike>) {
+        val ms = System.currentTimeMillis()
+
         deleteMotorbikeList()
+
+        val motorbikeList = motorbikeApiList.map { motorbike ->
+            motorbike.toRemoteModel(ms)
+        }
 
         motorbikeList.forEach { motorbike ->
             firestore.collection("motorbikes")
@@ -28,21 +35,25 @@ class MotorbikeFirebaseRemoteDataSource(private val firestore: FirebaseFirestore
         }
     }
 
-    suspend fun getMotorbikeList(): Result<List<Motorbike>> {
-        val motorbikeList =
+    suspend fun getMotorbikeList(): Result<List<MotorbikeRemoteModel>> {
+        val motorbikeFirebaseList =
             firestore.collection("motorbikes")
                 .orderBy("id", Query.Direction.DESCENDING)
                 .get()
                 .await()
                 .map {
-                    it.toObject(MotorbikeRemoteModel::class.java).toModel()
+                    it.toObject(MotorbikeRemoteModel::class.java)
                 }
 
-        return if (motorbikeList.isNotEmpty()) {
-            Result.success(motorbikeList)
+        return if (motorbikeFirebaseList.isNotEmpty()) {
+            Result.success(motorbikeFirebaseList)
         } else {
             Result.failure(ErrorApp.DataError)
         }
+    }
+
+    fun isCacheValid(motorbikeList: List<MotorbikeRemoteModel>): Boolean {
+        return motorbikeList.first().createdAt.plus(REMOTE_TIME_CACHE) > System.currentTimeMillis()
     }
 
     suspend fun getMotorbikeById(motorbikeId: Int): Result<Motorbike> {
