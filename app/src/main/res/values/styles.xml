@@ -81,6 +81,11 @@
         <item name="android:backgroundTint">@color/md_theme_secondaryContainer</item>
     </style>
 
+    <style name="motorbike_spec_displacement_container">
+        <item name="android:paddingHorizontal">@dimen/small_margin_padding</item>
+        <item name="android:paddingVertical">@dimen/tiny_margin_padding</item>
+    </style>
+
     <style name="motorbike_spec_text">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -119,6 +124,12 @@
         <item name="android:textColor">@color/md_theme_onPrimaryContainer</item>
     </style>
 
+    <style name="motorbike_spec_displacement">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/md_theme_onSecondaryContainer</item>
+    </style>
+
     <style name="motorbike_spec_ic">
         <item name="android:layout_width">@dimen/motorbike_spec_ic_size</item>
         <item name="android:layout_height">@dimen/motorbike_spec_ic_size</item>
@@ -135,9 +146,12 @@
         <item name="android:textColor">@color/md_theme_onPrimaryContainer</item>
     </style>
 
-    <style name="motorbike_spec_hint" parent="motorbike_spec">
+    <style name="motorbike_detail_spec_hint" parent="motorbike_spec">
         <item name="android:layout_marginStart">@dimen/tiny_margin_padding</item>
-        <item name="android:textColor">@color/md_theme_onPrimaryContainer</item>
+    </style>
+
+    <style name="motorbike_item_spec_hint" parent="motorbike_spec_displacement">
+        <item name="android:layout_marginStart">@dimen/tiny_margin_padding</item>
     </style>
 
 </resources>

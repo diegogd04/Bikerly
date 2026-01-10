@@ -87,7 +87,7 @@
                             tools:text="@string/motorbike_detail_tool_year_displacement_text" />
 
                         <com.google.android.material.textview.MaterialTextView
-                            style="@style/motorbike_spec_hint"
+                            style="@style/motorbike_detail_spec_hint"
                             android:text="cc" />
 
                     </LinearLayout>
