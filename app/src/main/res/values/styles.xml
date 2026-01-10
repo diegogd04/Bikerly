@@ -79,6 +79,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:backgroundTint">@color/md_theme_secondaryContainer</item>
+        <item name="strokeColor">@color/md_theme_onSecondaryContainer</item>
     </style>
 
     <style name="motorbike_spec_displacement_container">
