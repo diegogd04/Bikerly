@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    style="@style/motorbike_detail_background">
 
     <include
         android:id="@+id/toolbar"
@@ -51,7 +50,7 @@
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/year"
                             style="@style/motorbike_spec"
-                            tools:text="@string/motorbike_detail_tool_year_text" />
+                            tools:text="@string/motorbike_detail_tool_year_displacement_text" />
 
                     </LinearLayout>
 
@@ -85,7 +84,7 @@
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/displacement"
                             style="@style/motorbike_spec"
-                            tools:text="@string/motorbike_detail_tool_displacement_text" />
+                            tools:text="@string/motorbike_detail_tool_year_displacement_text" />
 
                         <com.google.android.material.textview.MaterialTextView
                             style="@style/motorbike_spec_hint"

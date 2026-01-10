@@ -4,7 +4,7 @@
     <!-- Commons -->
     <style name="linear_layout_vertical">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
     </style>
 
@@ -13,12 +13,20 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <!-- Motorbike List -->
-    <style name="motorbike_list_toolbar">
+    <!-- Toolbar -->
+    <style name="toolbar_app_bar_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/md_theme_primary</item>
+    </style>
+
+    <style name="toolbar_app_bar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/medium_margin_padding</item>
         <item name="titleCentered">true</item>
+        <item name="titleTextColor">@color/md_theme_onPrimary</item>
+        <item name="navigationIconTint">@color/md_theme_onPrimary</item>
     </style>
 
     <!-- Motorbike Item -->
@@ -27,6 +35,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginVertical">@dimen/small_margin_padding</item>
         <item name="android:layout_marginHorizontal">@dimen/medium_margin_padding</item>
+        <item name="android:backgroundTint">@color/md_theme_primaryContainer</item>
     </style>
 
     <style name="motorbike_item_image">
@@ -43,6 +52,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/md_theme_onPrimaryContainer</item>
     </style>
 
     <style name="motorbike_make_list" parent="motorbike_make">
@@ -55,6 +65,7 @@
         <item name="android:layout_marginStart">@dimen/small_margin_padding</item>
         <item name="android:layout_marginTop">@dimen/small_margin_padding</item>
         <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/md_theme_onPrimaryContainer</item>
     </style>
 
     <style name="motorbike_container_specs">
@@ -67,6 +78,7 @@
     <style name="motorbike_spec_container">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/md_theme_secondaryContainer</item>
     </style>
 
     <style name="motorbike_spec_text">
@@ -74,9 +86,16 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:paddingHorizontal">@dimen/small_margin_padding</item>
         <item name="android:paddingVertical">@dimen/tiny_margin_padding</item>
+        <item name="android:textColor">@color/md_theme_onSecondaryContainer</item>
     </style>
 
     <!-- Motorbike Detail -->
+    <style name="motorbike_detail_background">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/md_theme_primaryContainer</item>
+    </style>
+
     <style name="motorbike_spec_container_detail" parent="linear_layout_horizontal">
         <item name="android:gravity">center_vertical</item>
     </style>
@@ -97,20 +116,28 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/text_small_size</item>
+        <item name="android:textColor">@color/md_theme_onPrimaryContainer</item>
     </style>
 
     <style name="motorbike_spec_ic">
         <item name="android:layout_width">@dimen/motorbike_spec_ic_size</item>
         <item name="android:layout_height">@dimen/motorbike_spec_ic_size</item>
+        <item name="android:tint">@color/md_theme_onPrimaryContainer</item>
+
+        <!-- QUITAR AL CAMBIAR IMAGENES -->
+        <item name="android:rotation">90</item>
+        <item name="android:scaleY">-1</item>
     </style>
 
     <style name="motorbike_spec_title" parent="motorbike_spec">
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginHorizontal">@dimen/small_margin_padding</item>
+        <item name="android:textColor">@color/md_theme_onPrimaryContainer</item>
     </style>
 
     <style name="motorbike_spec_hint" parent="motorbike_spec">
         <item name="android:layout_marginStart">@dimen/tiny_margin_padding</item>
+        <item name="android:textColor">@color/md_theme_onPrimaryContainer</item>
     </style>
 
 </resources>
