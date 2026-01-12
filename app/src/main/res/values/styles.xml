@@ -135,10 +135,6 @@
         <item name="android:layout_width">@dimen/motorbike_spec_ic_size</item>
         <item name="android:layout_height">@dimen/motorbike_spec_ic_size</item>
         <item name="android:tint">@color/md_theme_onPrimaryContainer</item>
-
-        <!-- QUITAR AL CAMBIAR IMAGENES -->
-        <item name="android:rotation">90</item>
-        <item name="android:scaleY">-1</item>
     </style>
 
     <style name="motorbike_spec_title" parent="motorbike_spec">
