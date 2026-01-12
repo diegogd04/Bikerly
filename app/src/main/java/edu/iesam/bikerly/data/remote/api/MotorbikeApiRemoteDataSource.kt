@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Single
 class MotorbikeApiRemoteDataSource {
 
-    private val baseUrl = "http://bikerly.up.railway.app/"
+    private val baseUrl = "https://bikerly.onrender.com"
 
     private val service: MotorbikeApiService by lazy {
         val interceptor = HttpLoggingInterceptor().apply {
