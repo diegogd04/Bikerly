@@ -61,10 +61,23 @@
                     app:layout_constraintStart_toEndOf="@id/type_container"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/displacement"
-                        style="@style/motorbike_spec_text"
-                        tools:text="@string/motorbike_item_displacement_text_tools" />
+                    <LinearLayout
+                        style="@style/motorbike_spec_displacement_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/displacement"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/md_theme_onSecondaryContainer"
+                            tools:text="@string/motorbike_item_displacement_text_tools" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/motorbike_item_spec_hint"
+                            android:text="cc" />
+
+                    </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 

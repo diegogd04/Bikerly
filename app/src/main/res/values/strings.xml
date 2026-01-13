@@ -16,8 +16,7 @@
     <string name="motorbike_detail_hint_year_text">Año:</string>
     <string name="motorbike_detail_hint_type_text">Tipo:</string>
     <string name="motorbike_detail_hint_displacement_text">Potencia:</string>
-    <string name="motorbike_detail_tool_year_text">0000</string>
+    <string name="motorbike_detail_tool_year_displacement_text">0000</string>
     <string name="motorbike_detail_tool_type_text">type</string>
-    <string name="motorbike_detail_tool_displacement_text">0000.0</string>
 
 </resources>
