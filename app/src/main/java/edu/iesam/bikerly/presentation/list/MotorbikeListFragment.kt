@@ -40,7 +40,16 @@ class MotorbikeListFragment : Fragment() {
 
     private fun setUpView() {
         binding.apply {
-            toolbar.topAppBar.navigationIcon = null
+            toolbar.apply {
+                topAppBar.navigationIcon = null
+                buttonFavoriteTrue.visibility = View.GONE
+                buttonFavoriteFalse.visibility = View.VISIBLE
+                val favoriteClickListener = View.OnClickListener {
+                    viewModel.toggleFavoriteMotorbikeList()
+                }
+                buttonFavoriteTrue.setOnClickListener(favoriteClickListener)
+                buttonFavoriteFalse.setOnClickListener(favoriteClickListener)
+            }
             listItem.apply {
                 layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -54,13 +63,14 @@ class MotorbikeListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpObserver()
-        viewModel.loadMotorbikeList()
+        viewModel.loadInitialList()
     }
 
     private fun setUpObserver() {
         val observer = Observer<MotorbikeListViewModel.UiState> { uiState ->
             bindLoading(uiState.isLoading)
             bindData(uiState.motorbikeList)
+            bindToolbar(uiState.showFavorites)
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
@@ -74,6 +84,18 @@ class MotorbikeListFragment : Fragment() {
             skeleton.showSkeleton()
         } else {
             skeleton.showOriginal()
+        }
+    }
+
+    private fun bindToolbar(showFavorites: Boolean) {
+        binding.toolbar.apply {
+            if (showFavorites) {
+                buttonFavoriteTrue.visibility = View.VISIBLE
+                buttonFavoriteFalse.visibility = View.GONE
+            } else {
+                buttonFavoriteTrue.visibility = View.GONE
+                buttonFavoriteFalse.visibility = View.VISIBLE
+            }
         }
     }
 }

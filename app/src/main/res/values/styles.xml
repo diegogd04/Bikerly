@@ -18,15 +18,23 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@color/md_theme_primary</item>
+        <item name="android:paddingTop">@dimen/medium_margin_padding</item>
     </style>
 
     <style name="toolbar_app_bar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/medium_margin_padding</item>
         <item name="titleCentered">true</item>
         <item name="titleTextColor">@color/md_theme_onPrimary</item>
         <item name="navigationIconTint">@color/md_theme_onPrimary</item>
+    </style>
+
+    <style name="toolbar_button">
+        <item name="android:layout_width">@dimen/motorbike_ic_size</item>
+        <item name="android:layout_height">@dimen/motorbike_ic_size</item>
+        <item name="android:layout_marginEnd">@dimen/medium_margin_padding</item>
+        <item name="android:tint">@color/md_theme_onPrimary</item>
+        <item name="android:visibility">gone</item>
     </style>
 
     <!-- Motorbike Item -->
@@ -132,8 +140,8 @@
     </style>
 
     <style name="motorbike_spec_ic">
-        <item name="android:layout_width">@dimen/motorbike_spec_ic_size</item>
-        <item name="android:layout_height">@dimen/motorbike_spec_ic_size</item>
+        <item name="android:layout_width">@dimen/motorbike_ic_size</item>
+        <item name="android:layout_height">@dimen/motorbike_ic_size</item>
         <item name="android:tint">@color/md_theme_onPrimaryContainer</item>
     </style>
 
