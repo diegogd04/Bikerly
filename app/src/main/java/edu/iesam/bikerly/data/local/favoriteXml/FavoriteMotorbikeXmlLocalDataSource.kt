@@ -28,13 +28,16 @@ class FavoriteMotorbikeXmlLocalDataSource(private val context: Context) {
 
     fun getList(): Result<List<Motorbike>> {
         return try {
-            val motorbikeList = mutableListOf<Motorbike>()
-            val mapMotorbikeList = sharedPreferences.all as Map<String, String>
-
-            mapMotorbikeList.values.forEach { motorbike ->
-                val motorbike = gson.fromJson(motorbike, MotorbikeXmlModel::class.java)
-                motorbikeList.add(motorbike.toModel())
-            }
+            val motorbikeList = sharedPreferences.all.values
+                .map { motorbike ->
+                    gson.fromJson(motorbike.toString(), MotorbikeXmlModel::class.java)
+                }
+                .sortedByDescending { motorbike ->
+                    motorbike.addedAt
+                }
+                .map { motorbike ->
+                    motorbike.toModel()
+                }
 
             Result.success(motorbikeList)
         } catch (error: ErrorApp.DataError) {

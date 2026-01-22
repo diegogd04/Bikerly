@@ -7,5 +7,6 @@ data class MotorbikeXmlModel(
     val year: String,
     val type: String,
     val displacement: String,
-    val img: String
+    val img: String,
+    val addedAt: Long = System.currentTimeMillis()
 )
