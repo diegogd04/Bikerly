@@ -52,6 +52,24 @@
         <item name="android:scaleType">centerCrop</item>
     </style>
 
+    <style name="motorbike_item_favorite_container">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/small_margin_padding</item>
+        <item name="cardElevation">@dimen/medium_margin_padding</item>
+        <item name="cardCornerRadius">@dimen/motorbike_ic_size</item>
+        <item name="android:backgroundTint">@color/md_theme_primaryContainer</item>
+        <item name="strokeColor">@color/md_theme_onPrimaryContainer</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
+    <style name="motorbike_item_favorite">
+        <item name="android:layout_width">@dimen/motorbike_ic_size</item>
+        <item name="android:layout_height">@dimen/motorbike_ic_size</item>
+        <item name="android:layout_margin">@dimen/small_margin_padding</item>
+        <item name="android:tint">@color/md_theme_onPrimaryContainer</item>
+    </style>
+
     <style name="motorbike_container_information" parent="linear_layout_vertical">
         <item name="android:padding">@dimen/medium_margin_padding</item>
     </style>

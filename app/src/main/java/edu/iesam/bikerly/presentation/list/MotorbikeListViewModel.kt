@@ -22,12 +22,16 @@ class MotorbikeListViewModel(
     val uiState: LiveData<UiState> = _uiState
 
     var showFavoriteMotorbikeList = false
+    private var favoriteIdList: Set<Int> = emptySet()
 
     fun loadInitialList() {
-        if (showFavoriteMotorbikeList) {
-            loadFavoriteMotorbikeList()
-        } else {
-            loadMotorbikeList()
+        viewModelScope.launch(Dispatchers.IO) {
+            updateFavoriteIdList()
+            if (showFavoriteMotorbikeList) {
+                loadFavoriteMotorbikeList()
+            } else {
+                loadMotorbikeList()
+            }
         }
     }
 
@@ -39,7 +43,8 @@ class MotorbikeListViewModel(
                 _uiState.postValue(
                     UiState(
                         motorbikeList = it,
-                        showFavorites = false
+                        showFavorites = false,
+                        favoriteIdList = favoriteIdList
                     )
                 )
             }, { _uiState.postValue(UiState(error = ErrorApp.DataError)) })
@@ -55,7 +60,8 @@ class MotorbikeListViewModel(
                     _uiState.postValue(
                         UiState(
                             motorbikeList = it,
-                            showFavorites = true
+                            showFavorites = true,
+                            favoriteIdList = favoriteIdList
                         )
                     )
                 },
@@ -68,10 +74,27 @@ class MotorbikeListViewModel(
         loadInitialList()
     }
 
+    /*private suspend fun buildFavoriteMap(): Map<Int, Boolean> {
+        return getFavoriteMotorbikeListUseCase()
+            .getOrNull()
+            .orEmpty()
+            .associate { it.id to true }
+    }*/
+
+    private suspend fun updateFavoriteIdList() {
+        favoriteIdList = getFavoriteMotorbikeListUseCase()
+            .getOrNull()
+            .orEmpty()
+            .map { it.id }
+            .toSet()
+    }
+
+
     data class UiState(
         val isLoading: Boolean = false,
         val motorbikeList: List<Motorbike> = emptyList(),
         val showFavorites: Boolean = false,
+        val favoriteIdList: Set<Int> = emptySet(),
         val error: ErrorApp? = null
     )
 }

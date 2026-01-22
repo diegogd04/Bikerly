@@ -69,13 +69,23 @@ class MotorbikeListFragment : Fragment() {
     private fun setUpObserver() {
         val observer = Observer<MotorbikeListViewModel.UiState> { uiState ->
             bindLoading(uiState.isLoading)
-            bindData(uiState.motorbikeList)
             bindToolbar(uiState.showFavorites)
+
+            val showFavoriteIcon = !uiState.showFavorites
+            motorbikeAdapter.setShowFavoriteIcon(showFavoriteIcon)
+            motorbikeAdapter.setFavoriteIdList(uiState.favoriteIdList)
+            bindData(uiState.motorbikeList, uiState.favoriteIdList, showFavoriteIcon)
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
 
-    private fun bindData(motorbikeList: List<Motorbike>) {
+    private fun bindData(
+        motorbikeList: List<Motorbike>,
+        favoriteIdList: Set<Int>,
+        showFavoriteIcon: Boolean
+    ) {
+        motorbikeAdapter.setShowFavoriteIcon(showFavoriteIcon)
+        motorbikeAdapter.setFavoriteIdList(favoriteIdList)
         motorbikeAdapter.submitList(motorbikeList)
     }
 

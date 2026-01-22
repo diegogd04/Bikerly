@@ -10,7 +10,7 @@ class MotorbikeViewHolder(private val view: View) : RecyclerView.ViewHolder(view
 
     private lateinit var binding: ViewMotorbikeItemBinding
 
-    fun bind(item: Motorbike, onclick: (Int) -> Unit) {
+    fun bind(item: Motorbike, onclick: (Int) -> Unit, isFavorite: Boolean) {
         binding = ViewMotorbikeItemBinding.bind(view)
 
         binding.apply {
@@ -22,6 +22,12 @@ class MotorbikeViewHolder(private val view: View) : RecyclerView.ViewHolder(view
             image.loadUrl(item.img)
             motorbikeCard.setOnClickListener {
                 onclick(item.id)
+            }
+
+            if (isFavorite) {
+                favoriteIc.visibility = View.VISIBLE
+            } else {
+                favoriteIc.visibility = View.GONE
             }
         }
     }
