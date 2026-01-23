@@ -34,12 +34,24 @@ class MotorbikeDetailFragment : Fragment() {
 
     private fun setUpView() {
         toolbarEdit()
+        setUpFavoriteClick()
         skeleton = binding.skeleton
     }
 
     private fun toolbarEdit() {
         binding.toolbar.topAppBar.setNavigationOnClickListener {
             findNavController().navigateUp()
+        }
+    }
+
+    private fun setUpFavoriteClick() {
+        val clickListener = View.OnClickListener {
+            viewModel.toggleFavoriteMotorbike()
+        }
+
+        binding.toolbar.apply {
+            buttonFavoriteTrue.setOnClickListener(clickListener)
+            buttonFavoriteFalse.setOnClickListener(clickListener)
         }
     }
 
@@ -54,6 +66,7 @@ class MotorbikeDetailFragment : Fragment() {
         val observer = Observer<MotorbikeDetailViewModel.UiState> { uiState ->
             bindLoading(uiState.isLoading)
             bindData(uiState.motorbike)
+            bindFavorite(uiState.isFavorite)
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
@@ -74,6 +87,18 @@ class MotorbikeDetailFragment : Fragment() {
             skeleton.showSkeleton()
         } else {
             skeleton.showOriginal()
+        }
+    }
+
+    private fun bindFavorite(isFavorite: Boolean) {
+        binding.toolbar.apply {
+            if (isFavorite) {
+                buttonFavoriteTrue.visibility = View.VISIBLE
+                buttonFavoriteFalse.visibility = View.GONE
+            } else {
+                buttonFavoriteTrue.visibility = View.GONE
+                buttonFavoriteFalse.visibility = View.VISIBLE
+            }
         }
     }
 }

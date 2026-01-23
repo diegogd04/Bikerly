@@ -25,8 +25,11 @@ gsonVersion = "2.13.2"
 gsonConverterVersion = "3.0.0"
 okhttpVersion = "5.3.2"
 googleGmsGoogleServicesVersion = "4.4.4"
-firebaseFirestoreVersion = "26.0.2"
+firebaseFirestoreVersion = "26.1.0"
 roomVersion = "2.8.4"
+
+testCoroutinesVersion = "1.10.2"
+testRobolectricVersion = "4.16"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -57,6 +60,9 @@ firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
 room-ksp = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
 room-coroutines = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
+
+test-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "testCoroutinesVersion" }
+test-robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "testRobolectricVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

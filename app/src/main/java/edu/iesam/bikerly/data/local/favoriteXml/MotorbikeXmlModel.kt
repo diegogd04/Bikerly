@@ -1,0 +1,12 @@
+package edu.iesam.bikerly.data.local.favoriteXml
+
+data class MotorbikeXmlModel(
+    val id: Int,
+    val make: String,
+    val model: String,
+    val year: String,
+    val type: String,
+    val displacement: String,
+    val img: String,
+    val addedAt: Long = System.currentTimeMillis()
+)

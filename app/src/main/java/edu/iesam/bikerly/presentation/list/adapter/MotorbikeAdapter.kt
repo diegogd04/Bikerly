@@ -9,6 +9,19 @@ import edu.iesam.bikerly.domain.Motorbike
 class MotorbikeAdapter(private val onClick: (Int) -> Unit) :
     ListAdapter<Motorbike, MotorbikeViewHolder>(MotorbikeDiffUtil()) {
 
+    private var favoriteIdList: Set<Int> = emptySet()
+    private var showFavoriteIcon: Boolean = true
+
+    fun setFavoriteIdList(idList: Set<Int>) {
+        favoriteIdList = idList
+        notifyDataSetChanged()
+    }
+
+    fun setShowFavoriteIcon(show: Boolean) {
+        showFavoriteIcon = show
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -27,6 +40,8 @@ class MotorbikeAdapter(private val onClick: (Int) -> Unit) :
         holder: MotorbikeViewHolder,
         position: Int
     ) {
-        holder.bind(currentList[position], onClick)
+        val motorbike = currentList[position]
+        val isFavorite = favoriteIdList.contains(motorbike.id) && showFavoriteIcon
+        holder.bind(motorbike, onClick, isFavorite)
     }
 }

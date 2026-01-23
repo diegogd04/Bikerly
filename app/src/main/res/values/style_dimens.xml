@@ -13,6 +13,6 @@
     <dimen name="motorbike_item_image_height">200dp</dimen>
 
     <!-- Motorbike Detail -->
-    <dimen name="motorbike_spec_ic_size">30dp</dimen>
+    <dimen name="motorbike_ic_size">30dp</dimen>
 
 </resources>

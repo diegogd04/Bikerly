@@ -1,6 +1,7 @@
 package edu.iesam.bikerly.data
 
 import edu.iesam.bikerly.app.domain.ErrorApp
+import edu.iesam.bikerly.data.local.favoriteXml.FavoriteMotorbikeXmlLocalDataSource
 import edu.iesam.bikerly.data.local.mock.MotorbikeMockLocalDataSource
 import edu.iesam.bikerly.data.local.room.MotorbikeDbLocalDataSource
 import edu.iesam.bikerly.data.remote.MotorbikeFirebaseRemoteDataSource
@@ -13,6 +14,7 @@ import org.koin.core.annotation.Single
 @Single
 class MotorbikeDataRepository(
     private val mockLocal: MotorbikeMockLocalDataSource,
+    private val favoriteXmlLocal: FavoriteMotorbikeXmlLocalDataSource,
     private val roomLocal: MotorbikeDbLocalDataSource,
     private val apiRemote: MotorbikeApiRemoteDataSource,
     private val firebaseRemote: MotorbikeFirebaseRemoteDataSource
@@ -92,5 +94,22 @@ class MotorbikeDataRepository(
                 Result.failure(ErrorApp.DataError)
             }
         }
+    }
+
+
+    override suspend fun saveFavoriteMotorbike(motorbike: Motorbike) {
+        favoriteXmlLocal.save(motorbike)
+    }
+
+    override suspend fun removeFavoriteMotorbike(motorbike: Motorbike) {
+        favoriteXmlLocal.remove(motorbike)
+    }
+
+    override suspend fun isFavoriteMotorbike(motorbike: Motorbike): Boolean {
+        return favoriteXmlLocal.isFavorite(motorbike)
+    }
+
+    override suspend fun getFavoriteMotorbikeList(): Result<List<Motorbike>> {
+        return favoriteXmlLocal.getList()
     }
 }
