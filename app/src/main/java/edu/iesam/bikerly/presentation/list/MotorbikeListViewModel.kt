@@ -74,13 +74,6 @@ class MotorbikeListViewModel(
         loadInitialList()
     }
 
-    /*private suspend fun buildFavoriteMap(): Map<Int, Boolean> {
-        return getFavoriteMotorbikeListUseCase()
-            .getOrNull()
-            .orEmpty()
-            .associate { it.id to true }
-    }*/
-
     private suspend fun updateFavoriteIdList() {
         favoriteIdList = getFavoriteMotorbikeListUseCase()
             .getOrNull()
