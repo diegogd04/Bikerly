@@ -39,8 +39,12 @@ class MotorbikeDetailFragment : Fragment() {
     }
 
     private fun toolbarEdit() {
-        binding.toolbar.topAppBar.setNavigationOnClickListener {
-            findNavController().navigateUp()
+        binding.toolbar.apply {
+            appLogo.visibility = View.GONE
+            buttonSearch.visibility = View.GONE
+            topAppBar.setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
         }
     }
 

@@ -5,6 +5,9 @@
     <string name="motorbike_list_fragment_label">Listado de motos</string>
     <string name="motorbike_detail_fragment_label">Detalle de moto</string>
 
+    <!-- Toolbar -->
+    <string name="toolbar_search_bar_hint">Buscar por modelo</string>
+
     <!-- Motorbike Item -->
     <string name="motorbike_make_text_tools">Make</string>
     <string name="motorbike_model_text_tools">Model</string>

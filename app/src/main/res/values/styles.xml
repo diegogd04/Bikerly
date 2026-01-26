@@ -18,7 +18,32 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@color/md_theme_primary</item>
-        <item name="android:paddingTop">@dimen/medium_margin_padding</item>
+        <item name="android:paddingTop">@dimen/big_margin_padding</item>
+    </style>
+
+    <style name="toolbar_app_logo">
+        <item name="android:layout_width">@dimen/toolbar_ic_size</item>
+        <item name="android:layout_height">@dimen/toolbar_ic_size</item>
+        <item name="android:padding">@dimen/small_margin_padding</item>
+    </style>
+
+    <style name="toolbar_search_bar">
+        <item name="android:layout_width">@dimen/floating_width_height</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">@dimen/medium_margin_padding</item>
+        <item name="boxBackgroundColor">@color/md_theme_secondaryContainer</item>
+        <item name="boxCornerRadiusTopStart">@dimen/medium_margin_padding</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/medium_margin_padding</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/medium_margin_padding</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/medium_margin_padding</item>
+        <item name="endIconMode">clear_text</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="toolbar_search_bar_input">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="toolbar_app_bar">
@@ -27,12 +52,22 @@
         <item name="titleCentered">true</item>
         <item name="titleTextColor">@color/md_theme_onPrimary</item>
         <item name="navigationIconTint">@color/md_theme_onPrimary</item>
+        <item name="buttonGravity">center_vertical</item>
     </style>
 
     <style name="toolbar_button">
         <item name="android:layout_width">@dimen/motorbike_ic_size</item>
         <item name="android:layout_height">@dimen/motorbike_ic_size</item>
         <item name="android:layout_marginEnd">@dimen/medium_margin_padding</item>
+    </style>
+
+    <style name="toolbar_button_search" parent="toolbar_button">
+        <item name="android:tint">@color/md_theme_onPrimary</item>
+    </style>
+
+    <style name="toolbar_button_favorite">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:tint">@color/md_theme_onPrimary</item>
         <item name="android:visibility">gone</item>
     </style>

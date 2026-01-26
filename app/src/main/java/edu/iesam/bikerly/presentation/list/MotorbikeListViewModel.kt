@@ -23,6 +23,8 @@ class MotorbikeListViewModel(
 
     var showFavoriteMotorbikeList = false
     private var favoriteIdList: Set<Int> = emptySet()
+    private var motorbikeListAll: List<Motorbike> = emptyList()
+    private var currentFilter: String = ""
 
     fun loadInitialList() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -40,13 +42,8 @@ class MotorbikeListViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             val motorbikeList = getMotorbikeListUseCase()
             motorbikeList.fold({
-                _uiState.postValue(
-                    UiState(
-                        motorbikeList = it,
-                        showFavorites = false,
-                        favoriteIdList = favoriteIdList
-                    )
-                )
+                motorbikeListAll = it
+                applyFilter()
             }, { _uiState.postValue(UiState(error = ErrorApp.DataError)) })
         }
     }
@@ -57,13 +54,8 @@ class MotorbikeListViewModel(
             val favoriteMotorbikeList = getFavoriteMotorbikeListUseCase()
             favoriteMotorbikeList.fold(
                 {
-                    _uiState.postValue(
-                        UiState(
-                            motorbikeList = it,
-                            showFavorites = true,
-                            favoriteIdList = favoriteIdList
-                        )
-                    )
+                    motorbikeListAll = it
+                    applyFilter()
                 },
                 { _uiState.postValue(UiState(error = ErrorApp.DataError)) })
         }
@@ -82,6 +74,28 @@ class MotorbikeListViewModel(
             .toSet()
     }
 
+    fun onSearchFilterChanged(filter: String) {
+        currentFilter = filter
+        applyFilter()
+    }
+
+    private fun applyFilter() {
+        val filteredMotorbikeList = if (currentFilter.isBlank()) {
+            motorbikeListAll
+        } else {
+            motorbikeListAll.filter {
+                it.model.contains(currentFilter, ignoreCase = true)
+            }
+        }
+
+        _uiState.postValue(
+            UiState(
+                motorbikeList = filteredMotorbikeList,
+                showFavorites = showFavoriteMotorbikeList,
+                favoriteIdList = favoriteIdList
+            )
+        )
+    }
 
     data class UiState(
         val isLoading: Boolean = false,

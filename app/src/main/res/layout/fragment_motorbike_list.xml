@@ -12,7 +12,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_item"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/floating_height"
+        android:layout_height="@dimen/floating_width_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

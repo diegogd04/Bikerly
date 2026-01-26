@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -39,6 +40,18 @@ class MotorbikeListFragment : Fragment() {
     }
 
     private fun setUpView() {
+        toolbarEdit()
+        binding.apply {
+            listItem.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                adapter = motorbikeAdapter
+                skeleton = applySkeleton(R.layout.view_motorbike_item, 8)
+            }
+        }
+    }
+
+    private fun toolbarEdit() {
         binding.apply {
             toolbar.apply {
                 topAppBar.navigationIcon = null
@@ -49,12 +62,13 @@ class MotorbikeListFragment : Fragment() {
                 }
                 buttonFavoriteTrue.setOnClickListener(favoriteClickListener)
                 buttonFavoriteFalse.setOnClickListener(favoriteClickListener)
-            }
-            listItem.apply {
-                layoutManager =
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                adapter = motorbikeAdapter
-                skeleton = applySkeleton(R.layout.view_motorbike_item, 8)
+                searchInput.addTextChangedListener { text ->
+                    viewModel.onSearchFilterChanged(text?.toString().orEmpty())
+                }
+                buttonSearch.setOnClickListener {
+                    buttonSearch.visibility = View.GONE
+                    searchBar.visibility = View.VISIBLE
+                }
             }
         }
     }
