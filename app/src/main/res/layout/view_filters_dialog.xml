@@ -28,6 +28,7 @@
 
             <LinearLayout
                 style="@style/linear_layout_vertical"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/make_title">
 
                 <LinearLayout style="@style/linear_layout_horizontal">
@@ -100,6 +101,7 @@
 
             <LinearLayout
                 style="@style/linear_layout_vertical"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/type_title">
 
                 <LinearLayout style="@style/linear_layout_horizontal">
