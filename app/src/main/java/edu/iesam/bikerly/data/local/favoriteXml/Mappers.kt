@@ -10,7 +10,7 @@ fun Motorbike.toXmlModel(): MotorbikeXmlModel {
         this.model,
         this.year,
         this.type,
-        this.displacement,
+        this.displacement.toString(),
         this.img.toString()
     )
 }
@@ -22,7 +22,7 @@ fun MotorbikeXmlModel.toModel(): Motorbike {
         this.model,
         this.year,
         this.type,
-        this.displacement,
+        this.displacement.toInt(),
         this.img.toUri()
     )
 }

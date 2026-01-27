@@ -27,6 +27,8 @@ class MotorbikeListViewModel(
     private var currentFilter: String = ""
     private val selectedMakes = mutableSetOf<String>()
     private val selectedTypes = mutableSetOf<String>()
+    private var minDisplacement: Int? = null
+    private var maxDisplacement: Int? = null
 
     fun loadInitialList() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -93,16 +95,29 @@ class MotorbikeListViewModel(
         applyFilters()
     }
 
+    fun onDisplacementFilterChanged(min: Int?, max: Int?) {
+        minDisplacement = min
+        maxDisplacement = max
+        applyFilters()
+    }
+
     private fun applyFilters() {
+        val minDisplacement = minDisplacement
+        val maxDisplacement = maxDisplacement
         val filteredMotorbikeList = motorbikeListAll.filter { motorbike ->
+            val displacement = motorbike.displacement
             val resultSearchFilter = currentFilter.isBlank() || motorbike.model.contains(
                 currentFilter,
                 ignoreCase = true
             )
             val resultMakeFilter = selectedMakes.isEmpty() || selectedMakes.contains(motorbike.make)
             val resultTypeFilter = selectedTypes.isEmpty() || selectedTypes.contains(motorbike.type)
+            val resultMinDisplacementFilter =
+                minDisplacement == null || displacement >= minDisplacement
+            val resultMaxDisplacementFilter =
+                maxDisplacement == null || displacement <= maxDisplacement
 
-            resultSearchFilter && resultMakeFilter && resultTypeFilter
+            resultSearchFilter && resultMakeFilter && resultTypeFilter && resultMinDisplacementFilter && resultMaxDisplacementFilter
         }
 
         _uiState.postValue(
@@ -120,6 +135,14 @@ class MotorbikeListViewModel(
 
     fun getSelectedTypes(): List<String> {
         return selectedTypes.toList()
+    }
+
+    fun getMinDisplacement(): Int? {
+        return minDisplacement
+    }
+
+    fun getMaxDisplacement(): Int? {
+        return maxDisplacement
     }
 
     data class UiState(

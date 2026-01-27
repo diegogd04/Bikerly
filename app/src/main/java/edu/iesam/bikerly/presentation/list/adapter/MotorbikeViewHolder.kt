@@ -18,7 +18,7 @@ class MotorbikeViewHolder(private val view: View) : RecyclerView.ViewHolder(view
             model.text = item.model
             year.text = item.year
             type.text = item.type
-            displacement.text = item.displacement
+            displacement.text = item.displacement.toString()
             image.loadUrl(item.img)
             motorbikeCard.setOnClickListener {
                 onclick(item.id)

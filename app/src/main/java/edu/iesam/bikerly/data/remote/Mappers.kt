@@ -10,7 +10,7 @@ fun MotorbikeRemoteModel.toModel(): Motorbike {
         this.model,
         this.year,
         this.type,
-        this.displacement,
+        this.displacement.toInt(),
         this.img.toUri()
     )
 }
@@ -22,7 +22,7 @@ fun Motorbike.toRemoteModel(ms: Long): MotorbikeRemoteModel {
         this.model,
         this.year,
         this.type,
-        this.displacement,
+        this.displacement.toString(),
         this.img.toString(),
         ms
     )

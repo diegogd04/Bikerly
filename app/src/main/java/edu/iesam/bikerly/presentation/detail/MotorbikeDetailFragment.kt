@@ -81,7 +81,7 @@ class MotorbikeDetailFragment : Fragment() {
             model.text = motorbike.model
             year.text = motorbike.year
             type.text = motorbike.type
-            displacement.text = motorbike.displacement
+            displacement.text = motorbike.displacement.toString()
             image.loadUrl(motorbike.img)
         }
     }

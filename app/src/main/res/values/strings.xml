@@ -28,6 +28,7 @@
     <string name="motorbike_filters_toolbar_submit_button">Aplicar</string>
     <string name="motorbike_filters_make_title">Marca</string>
     <string name="motorbike_filters_type_title">Tipo</string>
+    <string name="motorbike_filters_displacement_title">Potencia</string>
     <string name="motorbike_filters_make_benelli_text">Benelli</string>
     <string name="motorbike_filters_make_bmw_text">BMW</string>
     <string name="motorbike_filters_make_ducati_text">Ducati</string>

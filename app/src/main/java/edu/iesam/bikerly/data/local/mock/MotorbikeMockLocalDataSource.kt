@@ -14,7 +14,7 @@ class MotorbikeMockLocalDataSource {
             "Ninja 650",
             "2022",
             "Sport",
-            "649.0",
+            "649",
             "https://cdn.dealerspike.com/imglib/v1/800x600/imglib/Assets/Inventory/07/7C/077C65E3-5BF7-4435-8BCA-D28995829246.jpg"
         ),
         MotorbikeMockModel(
@@ -23,7 +23,7 @@ class MotorbikeMockLocalDataSource {
             "KX250",
             "2022",
             "Cross / motocross",
-            "250.0",
+            "250",
             "https://storage.kawasaki.eu/public/kawasaki.eu/en-EU/model/imported/BE00000340EBFBEAA5.jpg"
         ),
         MotorbikeMockModel(
@@ -32,7 +32,7 @@ class MotorbikeMockLocalDataSource {
             "DesertX",
             "2022",
             "Enduro / offroad",
-            "937.0",
+            "937",
             "https://mcn-images.bauersecure.com/wp-images/186156/ducati-desertx-01.jpg"
         ),
         MotorbikeMockModel(
@@ -41,7 +41,7 @@ class MotorbikeMockLocalDataSource {
             "Panigale V2 Bayliss",
             "2022",
             "Sport",
-            "955.0",
+            "955",
             "https://res.cloudinary.com/twisted-road/image/upload/c_fill,g_auto,h_600,w_900,q_auto,f_auto/v1661024597/twisted_api/production/vehicles/uxdmhg8xqgwgimmxl0pf.jpg"
         ),
         MotorbikeMockModel(
@@ -50,7 +50,7 @@ class MotorbikeMockLocalDataSource {
             "S 1000 RR",
             "2022",
             "Sport",
-            "999.0",
+            "999",
             "https://soymotero.net/wp-content/uploads/2022/09/a3olig557zb55jsgaq57woc6im.jpg"
         )
     )

@@ -10,7 +10,7 @@ fun MotorbikeMockModel.toModel(): Motorbike {
         this.model,
         this.year,
         this.type,
-        this.displacement,
+        this.displacement.toInt(),
         this.img.toUri()
     )
 }

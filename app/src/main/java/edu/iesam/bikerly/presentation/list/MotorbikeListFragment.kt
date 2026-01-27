@@ -73,7 +73,9 @@ class MotorbikeListFragment : Fragment() {
                 buttonFilters.setOnClickListener {
                     val dialog = FiltersDialogFragment.newInstance(
                         viewModel.getSelectedMakes(),
-                        viewModel.getSelectedTypes()
+                        viewModel.getSelectedTypes(),
+                        viewModel.getMinDisplacement(),
+                        viewModel.getMaxDisplacement()
                     )
                     dialog.show(parentFragmentManager, "FiltersDialog")
                 }
@@ -93,7 +95,9 @@ class MotorbikeListFragment : Fragment() {
         ) { _, bundle ->
             val makes = getStringArray(bundle, "makes")
             val types = getStringArray(bundle, "types")
-            filtersListener(makes, types)
+            val minDisplacement = getInt(bundle, "minDisplacement")
+            val maxDisplacement = getInt(bundle, "maxDisplacement")
+            filtersListener(makes, types, minDisplacement, maxDisplacement)
         }
     }
 
@@ -101,9 +105,21 @@ class MotorbikeListFragment : Fragment() {
         return bundle.getStringArray(key)?.toList().orEmpty()
     }
 
-    private fun filtersListener(makes: List<String>, types: List<String>) {
-        viewModel.onMakeFilterChanged(makes)
-        viewModel.onTypeFilterChanged(types)
+    private fun getInt(bundle: Bundle, key: String): Int? {
+        return bundle.getInt(key, -1).takeIf { it >= 0 }
+    }
+
+    private fun filtersListener(
+        makes: List<String>,
+        types: List<String>,
+        minDisplacement: Int?,
+        maxDisplacement: Int?
+    ) {
+        viewModel.apply {
+            onMakeFilterChanged(makes)
+            onTypeFilterChanged(types)
+            onDisplacementFilterChanged(minDisplacement, maxDisplacement)
+        }
     }
 
     private fun setUpObserver() {

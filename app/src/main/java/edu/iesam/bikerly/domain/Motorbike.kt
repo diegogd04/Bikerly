@@ -8,6 +8,6 @@ data class Motorbike(
     val model: String,
     val year: String,
     val type: String,
-    val displacement: String,
+    val displacement: Int,
     val img: Uri?
 )

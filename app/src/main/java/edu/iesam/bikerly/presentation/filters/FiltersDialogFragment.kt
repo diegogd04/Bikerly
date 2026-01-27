@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import edu.iesam.bikerly.databinding.ViewFiltersDialogBinding
 
@@ -14,16 +15,22 @@ class FiltersDialogFragment : DialogFragment() {
     private val binding get() = _binding!!
     private val selectedMakes = mutableSetOf<String>()
     private val selectedTypes = mutableSetOf<String>()
+    private var minDisplacement: Int? = null
+    private var maxDisplacement: Int? = null
 
     companion object {
         fun newInstance(
             currentMakes: List<String>,
-            currentTypes: List<String>
+            currentTypes: List<String>,
+            currentMinDisplacement: Int?,
+            currentMaxDisplacement: Int?
         ): FiltersDialogFragment {
-            val fragment = FiltersDialogFragment()
-            fragment.selectedMakes.addAll(currentMakes)
-            fragment.selectedTypes.addAll(currentTypes)
-            return fragment
+            return FiltersDialogFragment().apply {
+                selectedMakes.addAll(currentMakes)
+                selectedTypes.addAll(currentTypes)
+                this.minDisplacement = currentMinDisplacement
+                this.maxDisplacement = currentMaxDisplacement
+            }
         }
     }
 
@@ -43,23 +50,27 @@ class FiltersDialogFragment : DialogFragment() {
     }
 
     private fun setUpView() {
-        setUpCheckboxes()
+        setUpFilters()
 
         binding.apply {
             submitButton.setOnClickListener {
+                val minDisplacement = binding.minDisplacementEditText.text.toString().toIntOrNull()
+                val maxDisplacement = binding.maxDisplacementEditText.text.toString().toIntOrNull()
                 parentFragmentManager.setFragmentResult(
                     "filters_result",
                     bundleOf(
                         "makes" to selectedMakes.toTypedArray(),
-                        "types" to selectedTypes.toTypedArray()
+                        "types" to selectedTypes.toTypedArray(),
+                        "minDisplacement" to minDisplacement,
+                        "maxDisplacement" to maxDisplacement
                     )
                 )
                 dismiss()
             }
             toolbar.apply {
                 cleanButton.setOnClickListener {
-                    cleanSelectedFilters()
-                    resetCheckboxes()
+                    cleanFilters()
+                    resetFilters()
                 }
                 topAppBar.setNavigationOnClickListener {
                     dismiss()
@@ -68,9 +79,10 @@ class FiltersDialogFragment : DialogFragment() {
         }
     }
 
-    private fun setUpCheckboxes() {
+    private fun setUpFilters() {
         setUpMakeCheckboxes()
         setUpTypeCheckboxes()
+        setUpDisplacementInputs()
     }
 
     private fun setUpMakeCheckboxes() {
@@ -125,9 +137,24 @@ class FiltersDialogFragment : DialogFragment() {
         }
     }
 
-    private fun resetCheckboxes() {
+    private fun setUpDisplacementInputs() {
+        binding.apply {
+            minDisplacementEditText.setText(minDisplacement?.toString())
+            maxDisplacementEditText.setText(maxDisplacement?.toString())
+
+            minDisplacementEditText.addTextChangedListener { text ->
+                minDisplacement = text?.toString()?.toIntOrNull()
+            }
+            maxDisplacementEditText.addTextChangedListener { text ->
+                maxDisplacement = text?.toString()?.toIntOrNull()
+            }
+        }
+    }
+
+    private fun resetFilters() {
         resetMakeCheckboxes()
         resetTypeCheckboxes()
+        resetDisplacementInput()
     }
 
     private fun resetMakeCheckboxes() {
@@ -150,8 +177,17 @@ class FiltersDialogFragment : DialogFragment() {
         }
     }
 
-    private fun cleanSelectedFilters() {
+    private fun resetDisplacementInput() {
+        binding.apply {
+            minDisplacementEditText.setText(minDisplacement?.toString() ?: "")
+            maxDisplacementEditText.setText(maxDisplacement?.toString() ?: "")
+        }
+    }
+
+    private fun cleanFilters() {
         selectedMakes.clear()
         selectedTypes.clear()
+        minDisplacement = null
+        maxDisplacement = null
     }
 }
