@@ -149,7 +149,9 @@ class MotorbikeListFragment : Fragment() {
     ) {
         motorbikeAdapter.setShowFavoriteIcon(showFavoriteIcon)
         motorbikeAdapter.setFavoriteIdList(favoriteIdList)
-        motorbikeAdapter.submitList(motorbikeList)
+        motorbikeAdapter.submitList(motorbikeList) {
+            binding.listItem.scrollToPosition(0)
+        }
     }
 
     private fun bindLoading(loading: Boolean) {
