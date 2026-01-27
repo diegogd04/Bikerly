@@ -23,6 +23,14 @@ class MotorbikeListViewModel(
 
     var showFavoriteMotorbikeList = false
     private var favoriteIdList: Set<Int> = emptySet()
+    private var motorbikeListAll: List<Motorbike> = emptyList()
+    private var currentFilter: String = ""
+    private val selectedMakes = mutableSetOf<String>()
+    private val selectedTypes = mutableSetOf<String>()
+    private var minDisplacement: Int? = null
+    private var maxDisplacement: Int? = null
+    private var minYear: Int? = null
+    private var maxYear: Int? = null
 
     fun loadInitialList() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -40,13 +48,8 @@ class MotorbikeListViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             val motorbikeList = getMotorbikeListUseCase()
             motorbikeList.fold({
-                _uiState.postValue(
-                    UiState(
-                        motorbikeList = it,
-                        showFavorites = false,
-                        favoriteIdList = favoriteIdList
-                    )
-                )
+                motorbikeListAll = it
+                applyFilters()
             }, { _uiState.postValue(UiState(error = ErrorApp.DataError)) })
         }
     }
@@ -57,13 +60,8 @@ class MotorbikeListViewModel(
             val favoriteMotorbikeList = getFavoriteMotorbikeListUseCase()
             favoriteMotorbikeList.fold(
                 {
-                    _uiState.postValue(
-                        UiState(
-                            motorbikeList = it,
-                            showFavorites = true,
-                            favoriteIdList = favoriteIdList
-                        )
-                    )
+                    motorbikeListAll = it
+                    applyFilters()
                 },
                 { _uiState.postValue(UiState(error = ErrorApp.DataError)) })
         }
@@ -82,6 +80,97 @@ class MotorbikeListViewModel(
             .toSet()
     }
 
+    fun onSearchFilterChanged(filter: String) {
+        currentFilter = filter
+        applyFilters()
+    }
+
+    fun onMakeFilterChanged(makes: List<String>) {
+        selectedMakes.clear()
+        selectedMakes.addAll(makes)
+        applyFilters()
+    }
+
+    fun onTypeFilterChanged(types: List<String>) {
+        selectedTypes.clear()
+        selectedTypes.addAll(types)
+        applyFilters()
+    }
+
+    fun onDisplacementFilterChanged(min: Int?, max: Int?) {
+        minDisplacement = min
+        maxDisplacement = max
+        applyFilters()
+    }
+
+    fun onYearFilterChanged(min: Int?, max: Int?) {
+        minYear = min
+        maxYear = max
+        applyFilters()
+    }
+
+    private fun applyFilters() {
+        val minDisplacement = minDisplacement
+        val maxDisplacement = maxDisplacement
+        val minYear = minYear
+        val maxYear = maxYear
+        val filteredMotorbikeList = motorbikeListAll.filter { motorbike ->
+            val displacement = motorbike.displacement
+            val year = motorbike.year
+            val resultSearchFilter = currentFilter.isBlank() || motorbike.model.contains(
+                currentFilter,
+                ignoreCase = true
+            )
+            val resultMakeFilter = selectedMakes.isEmpty() || selectedMakes.contains(motorbike.make)
+            val resultTypeFilter = selectedTypes.isEmpty() || selectedTypes.contains(motorbike.type)
+            val resultMinDisplacementFilter =
+                minDisplacement == null || displacement >= minDisplacement
+            val resultMaxDisplacementFilter =
+                maxDisplacement == null || displacement <= maxDisplacement
+            val resultMinYearFilter =
+                minYear == null || year >= minYear
+            val resultMaxYearFilter =
+                maxYear == null || year <= maxYear
+
+            resultSearchFilter && resultMakeFilter && resultTypeFilter && resultMinDisplacementFilter && resultMaxDisplacementFilter && resultMinYearFilter && resultMaxYearFilter
+        }
+
+        _uiState.postValue(
+            UiState(
+                motorbikeList = filteredMotorbikeList,
+                showFavorites = showFavoriteMotorbikeList,
+                favoriteIdList = favoriteIdList
+            )
+        )
+    }
+
+    fun getSelectedMakes(): List<String> {
+        return selectedMakes.toList()
+    }
+
+    fun getSelectedTypes(): List<String> {
+        return selectedTypes.toList()
+    }
+
+    fun getMinDisplacement(): Int? {
+        return minDisplacement
+    }
+
+    fun getMaxDisplacement(): Int? {
+        return maxDisplacement
+    }
+
+    fun getMinYear(): Int? {
+        return minYear
+    }
+
+    fun getMaxYear(): Int? {
+        return maxYear
+    }
+
+    fun hasActiveFilters(): Boolean {
+        return selectedMakes.isNotEmpty() || selectedTypes.isNotEmpty() || (minDisplacement != null || maxDisplacement != null) || (minYear != null || maxYear != null)
+    }
 
     data class UiState(
         val isLoading: Boolean = false,

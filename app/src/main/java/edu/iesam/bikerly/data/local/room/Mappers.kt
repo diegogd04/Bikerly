@@ -8,9 +8,9 @@ fun MotorbikeEntity.toModel(): Motorbike {
         this.id,
         this.make,
         this.model,
-        this.year,
+        this.year.toInt(),
         this.type,
-        this.displacement,
+        this.displacement.toInt(),
         this.img.toUri()
     )
 }
@@ -20,9 +20,9 @@ fun Motorbike.toEntity(ms: Long): MotorbikeEntity {
         this.id,
         this.make,
         this.model,
-        this.year,
+        this.year.toString(),
         this.type,
-        this.displacement,
+        this.displacement.toString(),
         this.img.toString(),
         ms
     )

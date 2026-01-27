@@ -39,8 +39,12 @@ class MotorbikeDetailFragment : Fragment() {
     }
 
     private fun toolbarEdit() {
-        binding.toolbar.topAppBar.setNavigationOnClickListener {
-            findNavController().navigateUp()
+        binding.toolbar.apply {
+            appLogo.visibility = View.GONE
+            buttonSearch.visibility = View.GONE
+            topAppBar.setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
         }
     }
 
@@ -75,9 +79,9 @@ class MotorbikeDetailFragment : Fragment() {
         binding.apply {
             make.text = motorbike.make
             model.text = motorbike.model
-            year.text = motorbike.year
+            year.text = motorbike.year.toString()
             type.text = motorbike.type
-            displacement.text = motorbike.displacement
+            displacement.text = motorbike.displacement.toString()
             image.loadUrl(motorbike.img)
         }
     }

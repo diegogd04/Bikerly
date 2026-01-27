@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -13,6 +14,7 @@ import com.faltenreich.skeletonlayout.applySkeleton
 import edu.iesam.bikerly.R
 import edu.iesam.bikerly.databinding.FragmentMotorbikeListBinding
 import edu.iesam.bikerly.domain.Motorbike
+import edu.iesam.bikerly.presentation.filters.FiltersDialogFragment
 import edu.iesam.bikerly.presentation.list.adapter.MotorbikeAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -39,6 +41,18 @@ class MotorbikeListFragment : Fragment() {
     }
 
     private fun setUpView() {
+        toolbarEdit()
+        binding.apply {
+            listItem.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                adapter = motorbikeAdapter
+                skeleton = applySkeleton(R.layout.view_motorbike_item, 8)
+            }
+        }
+    }
+
+    private fun toolbarEdit() {
         binding.apply {
             toolbar.apply {
                 topAppBar.navigationIcon = null
@@ -49,12 +63,24 @@ class MotorbikeListFragment : Fragment() {
                 }
                 buttonFavoriteTrue.setOnClickListener(favoriteClickListener)
                 buttonFavoriteFalse.setOnClickListener(favoriteClickListener)
-            }
-            listItem.apply {
-                layoutManager =
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                adapter = motorbikeAdapter
-                skeleton = applySkeleton(R.layout.view_motorbike_item, 8)
+                searchInput.addTextChangedListener { text ->
+                    viewModel.onSearchFilterChanged(text?.toString().orEmpty())
+                }
+                buttonSearch.setOnClickListener {
+                    buttonSearch.visibility = View.GONE
+                    searchBar.visibility = View.VISIBLE
+                }
+                buttonFilters.setOnClickListener {
+                    val dialog = FiltersDialogFragment.newInstance(
+                        viewModel.getSelectedMakes(),
+                        viewModel.getSelectedTypes(),
+                        viewModel.getMinDisplacement(),
+                        viewModel.getMaxDisplacement(),
+                        viewModel.getMinYear(),
+                        viewModel.getMaxYear()
+                    )
+                    dialog.show(parentFragmentManager, "FiltersDialog")
+                }
             }
         }
     }
@@ -64,6 +90,59 @@ class MotorbikeListFragment : Fragment() {
 
         setUpObserver()
         viewModel.loadInitialList()
+
+        parentFragmentManager.setFragmentResultListener(
+            "filters_result",
+            viewLifecycleOwner
+        ) { _, bundle ->
+            val makes = getStringArray(bundle, "makes")
+            val types = getStringArray(bundle, "types")
+            val minDisplacement = getInt(bundle, "minDisplacement")
+            val maxDisplacement = getInt(bundle, "maxDisplacement")
+            val minYear = getInt(bundle, "minYear")
+            val maxYear = getInt(bundle, "maxYear")
+
+            filtersListener(makes, types, minDisplacement, maxDisplacement, minYear, maxYear)
+
+            updateFiltersIcon()
+        }
+    }
+
+    private fun getStringArray(bundle: Bundle, key: String): List<String> {
+        return bundle.getStringArray(key)?.toList().orEmpty()
+    }
+
+    private fun getInt(bundle: Bundle, key: String): Int? {
+        return bundle.getInt(key, -1).takeIf { it >= 0 }
+    }
+
+    private fun filtersListener(
+        makes: List<String>,
+        types: List<String>,
+        minDisplacement: Int?,
+        maxDisplacement: Int?,
+        minYear: Int?,
+        maxYear: Int?
+    ) {
+        viewModel.apply {
+            onMakeFilterChanged(makes)
+            onTypeFilterChanged(types)
+            onDisplacementFilterChanged(minDisplacement, maxDisplacement)
+            onYearFilterChanged(minYear, maxYear)
+        }
+    }
+
+    private fun updateFiltersIcon() {
+        val activeFilters = viewModel.hasActiveFilters()
+        binding.toolbar.apply {
+            if (activeFilters) {
+                buttonFiltersTrue.visibility = View.VISIBLE
+                buttonFiltersFalse.visibility = View.GONE
+            } else {
+                buttonFiltersTrue.visibility = View.GONE
+                buttonFiltersFalse.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun setUpObserver() {
@@ -86,7 +165,9 @@ class MotorbikeListFragment : Fragment() {
     ) {
         motorbikeAdapter.setShowFavoriteIcon(showFavoriteIcon)
         motorbikeAdapter.setFavoriteIdList(favoriteIdList)
-        motorbikeAdapter.submitList(motorbikeList)
+        motorbikeAdapter.submitList(motorbikeList) {
+            binding.listItem.scrollToPosition(0)
+        }
     }
 
     private fun bindLoading(loading: Boolean) {

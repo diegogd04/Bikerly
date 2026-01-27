@@ -5,6 +5,9 @@
     <string name="motorbike_list_fragment_label">Listado de motos</string>
     <string name="motorbike_detail_fragment_label">Detalle de moto</string>
 
+    <!-- Toolbar -->
+    <string name="toolbar_search_bar_hint">Buscar por modelo</string>
+
     <!-- Motorbike Item -->
     <string name="motorbike_make_text_tools">Make</string>
     <string name="motorbike_model_text_tools">Model</string>
@@ -18,5 +21,28 @@
     <string name="motorbike_detail_hint_displacement_text">Potencia:</string>
     <string name="motorbike_detail_tool_year_displacement_text">0000</string>
     <string name="motorbike_detail_tool_type_text">type</string>
+
+    <!-- Motorbike Filters -->
+    <string name="motorbike_filters_toolbar_title">Filtros</string>
+    <string name="motorbike_filters_toolbar_clean_button">Limpiar</string>
+    <string name="motorbike_filters_toolbar_submit_button">Aplicar</string>
+    <string name="motorbike_filters_make_title">Marca</string>
+    <string name="motorbike_filters_type_title">Tipo</string>
+    <string name="motorbike_filters_displacement_title">Potencia</string>
+    <string name="motorbike_filters_year_title">Año</string>
+    <string name="motorbike_filters_displacement_min_hint">min cc</string>
+    <string name="motorbike_filters_displacement_max_hint">max cc</string>
+    <string name="motorbike_filters_year_min_hint">min</string>
+    <string name="motorbike_filters_year_max_hint">max</string>
+    <string name="motorbike_filters_make_benelli_text">Benelli</string>
+    <string name="motorbike_filters_make_bmw_text">BMW</string>
+    <string name="motorbike_filters_make_ducati_text">Ducati</string>
+    <string name="motorbike_filters_make_kawasaki_text">Kawasaki</string>
+    <string name="motorbike_filters_make_ktm_text">KTM</string>
+    <string name="motorbike_filters_type_sport_text">Sport</string>
+    <string name="motorbike_filters_type_cross_motocross_text">Cross / motocross</string>
+    <string name="motorbike_filters_type_enduro_offroad_text">Enduro / offroad</string>
+    <string name="motorbike_filters_type_naked_text">Naked</string>
+    <string name="motorbike_filters_type_trail_text">Trail</string>
 
 </resources>

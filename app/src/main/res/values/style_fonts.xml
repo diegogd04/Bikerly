@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Motorbike Item -->
+    <!-- Commons -->
     <dimen name="text_small_size">17sp</dimen>
     <dimen name="text_normal_size">20sp</dimen>
     <dimen name="text_big_size">40sp</dimen>
