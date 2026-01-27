@@ -168,6 +168,10 @@ class MotorbikeListViewModel(
         return maxYear
     }
 
+    fun hasActiveFilters(): Boolean {
+        return selectedMakes.isNotEmpty() || selectedTypes.isNotEmpty() || (minDisplacement != null || maxDisplacement != null) || (minYear != null || maxYear != null)
+    }
+
     data class UiState(
         val isLoading: Boolean = false,
         val motorbikeList: List<Motorbike> = emptyList(),

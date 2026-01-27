@@ -101,7 +101,10 @@ class MotorbikeListFragment : Fragment() {
             val maxDisplacement = getInt(bundle, "maxDisplacement")
             val minYear = getInt(bundle, "minYear")
             val maxYear = getInt(bundle, "maxYear")
+
             filtersListener(makes, types, minDisplacement, maxDisplacement, minYear, maxYear)
+
+            updateFiltersIcon()
         }
     }
 
@@ -126,6 +129,19 @@ class MotorbikeListFragment : Fragment() {
             onTypeFilterChanged(types)
             onDisplacementFilterChanged(minDisplacement, maxDisplacement)
             onYearFilterChanged(minYear, maxYear)
+        }
+    }
+
+    private fun updateFiltersIcon() {
+        val activeFilters = viewModel.hasActiveFilters()
+        binding.toolbar.apply {
+            if (activeFilters) {
+                buttonFiltersTrue.visibility = View.VISIBLE
+                buttonFiltersFalse.visibility = View.GONE
+            } else {
+                buttonFiltersTrue.visibility = View.GONE
+                buttonFiltersFalse.visibility = View.VISIBLE
+            }
         }
     }
 
