@@ -57,7 +57,7 @@ class MotorbikeDetailViewModel(
 
     data class UiState(
         val isLoading: Boolean = false,
-        val motorbike: Motorbike = Motorbike(0, "", "", "", "", 0, "".toUri()),
+        val motorbike: Motorbike = Motorbike(0, "", "", 0, "", 0, "".toUri()),
         val isFavorite: Boolean = false,
         val error: ErrorApp? = null
     )

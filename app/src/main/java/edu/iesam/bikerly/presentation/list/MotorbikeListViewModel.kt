@@ -29,6 +29,8 @@ class MotorbikeListViewModel(
     private val selectedTypes = mutableSetOf<String>()
     private var minDisplacement: Int? = null
     private var maxDisplacement: Int? = null
+    private var minYear: Int? = null
+    private var maxYear: Int? = null
 
     fun loadInitialList() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -101,11 +103,20 @@ class MotorbikeListViewModel(
         applyFilters()
     }
 
+    fun onYearFilterChanged(min: Int?, max: Int?) {
+        minYear = min
+        maxYear = max
+        applyFilters()
+    }
+
     private fun applyFilters() {
         val minDisplacement = minDisplacement
         val maxDisplacement = maxDisplacement
+        val minYear = minYear
+        val maxYear = maxYear
         val filteredMotorbikeList = motorbikeListAll.filter { motorbike ->
             val displacement = motorbike.displacement
+            val year = motorbike.year
             val resultSearchFilter = currentFilter.isBlank() || motorbike.model.contains(
                 currentFilter,
                 ignoreCase = true
@@ -116,8 +127,12 @@ class MotorbikeListViewModel(
                 minDisplacement == null || displacement >= minDisplacement
             val resultMaxDisplacementFilter =
                 maxDisplacement == null || displacement <= maxDisplacement
+            val resultMinYearFilter =
+                minYear == null || year >= minYear
+            val resultMaxYearFilter =
+                maxYear == null || year <= maxYear
 
-            resultSearchFilter && resultMakeFilter && resultTypeFilter && resultMinDisplacementFilter && resultMaxDisplacementFilter
+            resultSearchFilter && resultMakeFilter && resultTypeFilter && resultMinDisplacementFilter && resultMaxDisplacementFilter && resultMinYearFilter && resultMaxYearFilter
         }
 
         _uiState.postValue(
@@ -143,6 +158,14 @@ class MotorbikeListViewModel(
 
     fun getMaxDisplacement(): Int? {
         return maxDisplacement
+    }
+
+    fun getMinYear(): Int? {
+        return minYear
+    }
+
+    fun getMaxYear(): Int? {
+        return maxYear
     }
 
     data class UiState(

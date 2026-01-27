@@ -213,6 +213,17 @@
     </style>
 
     <!-- Motorbike Filters  -->
+    <style name="motorbike_filters_background">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/md_theme_primary</item>
+    </style>
+
+    <style name="motorbike_filters_scroll">
+        <item name="android:layout_width">@dimen/floating_width_height</item>
+        <item name="android:layout_height">@dimen/floating_width_height</item>
+    </style>
+
     <style name="motorbike_filters_toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -226,6 +237,10 @@
         <item name="titleCentered">true</item>
         <item name="titleTextColor">@color/md_theme_onSecondaryContainer</item>
         <item name="navigationIconTint">@color/md_theme_onSecondaryContainer</item>
+    </style>
+
+    <style name="motorbike_filters" parent="linear_layout_vertical">
+        <item name="android:layout_marginBottom">@dimen/motorbike_margin_bottom</item>
     </style>
 
     <style name="motorbike_filters_button">
@@ -264,6 +279,24 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/text_small_size</item>
+    </style>
+
+    <style name="motorbike_filters_min_max_container" parent="linear_layout_horizontal">
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/medium_margin_padding</item>
+    </style>
+
+    <style name="motorbike_filters_min_max_input">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginHorizontal">@dimen/small_margin_padding</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="motorbike_filters_min_max_edit_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:inputType">number</item>
     </style>
 
     <style name="motorbike_filters_submit_button">

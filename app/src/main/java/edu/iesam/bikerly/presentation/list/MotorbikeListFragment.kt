@@ -75,7 +75,9 @@ class MotorbikeListFragment : Fragment() {
                         viewModel.getSelectedMakes(),
                         viewModel.getSelectedTypes(),
                         viewModel.getMinDisplacement(),
-                        viewModel.getMaxDisplacement()
+                        viewModel.getMaxDisplacement(),
+                        viewModel.getMinYear(),
+                        viewModel.getMaxYear()
                     )
                     dialog.show(parentFragmentManager, "FiltersDialog")
                 }
@@ -97,7 +99,9 @@ class MotorbikeListFragment : Fragment() {
             val types = getStringArray(bundle, "types")
             val minDisplacement = getInt(bundle, "minDisplacement")
             val maxDisplacement = getInt(bundle, "maxDisplacement")
-            filtersListener(makes, types, minDisplacement, maxDisplacement)
+            val minYear = getInt(bundle, "minYear")
+            val maxYear = getInt(bundle, "maxYear")
+            filtersListener(makes, types, minDisplacement, maxDisplacement, minYear, maxYear)
         }
     }
 
@@ -113,12 +117,15 @@ class MotorbikeListFragment : Fragment() {
         makes: List<String>,
         types: List<String>,
         minDisplacement: Int?,
-        maxDisplacement: Int?
+        maxDisplacement: Int?,
+        minYear: Int?,
+        maxYear: Int?
     ) {
         viewModel.apply {
             onMakeFilterChanged(makes)
             onTypeFilterChanged(types)
             onDisplacementFilterChanged(minDisplacement, maxDisplacement)
+            onYearFilterChanged(minYear, maxYear)
         }
     }
 

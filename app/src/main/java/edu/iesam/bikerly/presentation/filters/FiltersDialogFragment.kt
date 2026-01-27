@@ -17,19 +17,25 @@ class FiltersDialogFragment : DialogFragment() {
     private val selectedTypes = mutableSetOf<String>()
     private var minDisplacement: Int? = null
     private var maxDisplacement: Int? = null
+    private var minYear: Int? = null
+    private var maxYear: Int? = null
 
     companion object {
         fun newInstance(
             currentMakes: List<String>,
             currentTypes: List<String>,
             currentMinDisplacement: Int?,
-            currentMaxDisplacement: Int?
+            currentMaxDisplacement: Int?,
+            currentMinYear: Int?,
+            currentMaxYear: Int?
         ): FiltersDialogFragment {
             return FiltersDialogFragment().apply {
                 selectedMakes.addAll(currentMakes)
                 selectedTypes.addAll(currentTypes)
                 this.minDisplacement = currentMinDisplacement
                 this.maxDisplacement = currentMaxDisplacement
+                this.minYear = currentMinYear
+                this.maxYear = currentMaxYear
             }
         }
     }
@@ -56,13 +62,17 @@ class FiltersDialogFragment : DialogFragment() {
             submitButton.setOnClickListener {
                 val minDisplacement = binding.minDisplacementEditText.text.toString().toIntOrNull()
                 val maxDisplacement = binding.maxDisplacementEditText.text.toString().toIntOrNull()
+                val minYear = binding.minYearEditText.text.toString().toIntOrNull()
+                val maxYear = binding.maxYearEditText.text.toString().toIntOrNull()
                 parentFragmentManager.setFragmentResult(
                     "filters_result",
                     bundleOf(
                         "makes" to selectedMakes.toTypedArray(),
                         "types" to selectedTypes.toTypedArray(),
                         "minDisplacement" to minDisplacement,
-                        "maxDisplacement" to maxDisplacement
+                        "maxDisplacement" to maxDisplacement,
+                        "minYear" to minYear,
+                        "maxYear" to maxYear
                     )
                 )
                 dismiss()
@@ -83,6 +93,7 @@ class FiltersDialogFragment : DialogFragment() {
         setUpMakeCheckboxes()
         setUpTypeCheckboxes()
         setUpDisplacementInputs()
+        setUpYearInputs()
     }
 
     private fun setUpMakeCheckboxes() {
@@ -151,10 +162,25 @@ class FiltersDialogFragment : DialogFragment() {
         }
     }
 
+    private fun setUpYearInputs() {
+        binding.apply {
+            minYearEditText.setText(minYear?.toString())
+            maxYearEditText.setText(maxYear?.toString())
+
+            minYearEditText.addTextChangedListener { text ->
+                minYear = text?.toString()?.toIntOrNull()
+            }
+            maxYearEditText.addTextChangedListener { text ->
+                maxYear = text?.toString()?.toIntOrNull()
+            }
+        }
+    }
+
     private fun resetFilters() {
         resetMakeCheckboxes()
         resetTypeCheckboxes()
         resetDisplacementInput()
+        resetYearInput()
     }
 
     private fun resetMakeCheckboxes() {
@@ -184,10 +210,19 @@ class FiltersDialogFragment : DialogFragment() {
         }
     }
 
+    private fun resetYearInput() {
+        binding.apply {
+            minYearEditText.setText(minYear?.toString() ?: "")
+            maxYearEditText.setText(maxYear?.toString() ?: "")
+        }
+    }
+
     private fun cleanFilters() {
         selectedMakes.clear()
         selectedTypes.clear()
         minDisplacement = null
         maxDisplacement = null
+        minYear = null
+        maxYear = null
     }
 }

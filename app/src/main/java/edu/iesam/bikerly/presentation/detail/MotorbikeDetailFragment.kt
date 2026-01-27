@@ -79,7 +79,7 @@ class MotorbikeDetailFragment : Fragment() {
         binding.apply {
             make.text = motorbike.make
             model.text = motorbike.model
-            year.text = motorbike.year
+            year.text = motorbike.year.toString()
             type.text = motorbike.type
             displacement.text = motorbike.displacement.toString()
             image.loadUrl(motorbike.img)

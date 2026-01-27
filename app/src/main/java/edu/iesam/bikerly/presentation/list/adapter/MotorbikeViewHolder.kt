@@ -16,7 +16,7 @@ class MotorbikeViewHolder(private val view: View) : RecyclerView.ViewHolder(view
         binding.apply {
             make.text = item.make
             model.text = item.model
-            year.text = item.year
+            year.text = item.year.toString()
             type.text = item.type
             displacement.text = item.displacement.toString()
             image.loadUrl(item.img)
