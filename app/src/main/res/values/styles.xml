@@ -58,14 +58,14 @@
     <style name="toolbar_button">
         <item name="android:layout_width">@dimen/motorbike_ic_size</item>
         <item name="android:layout_height">@dimen/motorbike_ic_size</item>
-        <item name="android:layout_marginEnd">@dimen/medium_margin_padding</item>
+        <item name="android:layout_marginEnd">@dimen/small_margin_padding</item>
     </style>
 
     <style name="toolbar_button_search" parent="toolbar_button">
         <item name="android:tint">@color/md_theme_onPrimary</item>
     </style>
 
-    <style name="toolbar_button_favorite">
+    <style name="toolbar_button_boolean">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:tint">@color/md_theme_onPrimary</item>
@@ -210,6 +210,76 @@
 
     <style name="motorbike_item_spec_hint" parent="motorbike_spec_displacement">
         <item name="android:layout_marginStart">@dimen/tiny_margin_padding</item>
+    </style>
+
+    <!-- Motorbike Filters  -->
+    <style name="motorbike_filters_toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/md_theme_secondaryContainer</item>
+        <item name="android:paddingTop">@dimen/big_margin_padding</item>
+    </style>
+
+    <style name="motorbike_filters_top_app_bar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="titleCentered">true</item>
+        <item name="titleTextColor">@color/md_theme_onSecondaryContainer</item>
+        <item name="navigationIconTint">@color/md_theme_onSecondaryContainer</item>
+    </style>
+
+    <style name="motorbike_filters_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/medium_margin_padding</item>
+        <item name="android:textSize">@dimen/text_small_size</item>
+        <item name="android:textColor">@color/md_theme_onSecondaryContainer</item>
+    </style>
+
+    <style name="motorbike_filters_container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/medium_margin_padding</item>
+        <item name="android:backgroundTint">@color/md_theme_secondaryContainer</item>
+    </style>
+
+    <style name="motorbike_filters_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/small_margin_padding</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/md_theme_onSecondaryContainer</item>
+        <item name="android:textSize">@dimen/text_normal_size</item>
+    </style>
+
+    <style name="motorbike_filters_checkbox">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/medium_margin_padding</item>
+        <item name="android:textSize">@dimen/text_small_size</item>
+        <item name="android:textColor">@color/md_theme_onSecondaryContainer</item>
+    </style>
+
+    <style name="motorbike_filters_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_small_size</item>
+    </style>
+
+    <style name="motorbike_filters_submit_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/medium_margin_padding</item>
+        <item name="android:backgroundTint">@color/md_theme_onPrimary</item>
+        <item name="cardCornerRadius">@dimen/medium_margin_padding</item>
+    </style>
+
+    <style name="motorbike_filters_submit_button_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/medium_margin_padding</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+        <item name="android:textSize">@dimen/medium_margin_padding</item>
     </style>
 
 </resources>

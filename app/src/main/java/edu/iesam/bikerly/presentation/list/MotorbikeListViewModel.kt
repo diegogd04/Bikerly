@@ -25,6 +25,8 @@ class MotorbikeListViewModel(
     private var favoriteIdList: Set<Int> = emptySet()
     private var motorbikeListAll: List<Motorbike> = emptyList()
     private var currentFilter: String = ""
+    private val selectedMakes = mutableSetOf<String>()
+    private val selectedTypes = mutableSetOf<String>()
 
     fun loadInitialList() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -43,7 +45,7 @@ class MotorbikeListViewModel(
             val motorbikeList = getMotorbikeListUseCase()
             motorbikeList.fold({
                 motorbikeListAll = it
-                applyFilter()
+                applyFilters()
             }, { _uiState.postValue(UiState(error = ErrorApp.DataError)) })
         }
     }
@@ -55,7 +57,7 @@ class MotorbikeListViewModel(
             favoriteMotorbikeList.fold(
                 {
                     motorbikeListAll = it
-                    applyFilter()
+                    applyFilters()
                 },
                 { _uiState.postValue(UiState(error = ErrorApp.DataError)) })
         }
@@ -76,16 +78,31 @@ class MotorbikeListViewModel(
 
     fun onSearchFilterChanged(filter: String) {
         currentFilter = filter
-        applyFilter()
+        applyFilters()
     }
 
-    private fun applyFilter() {
-        val filteredMotorbikeList = if (currentFilter.isBlank()) {
-            motorbikeListAll
-        } else {
-            motorbikeListAll.filter {
-                it.model.contains(currentFilter, ignoreCase = true)
-            }
+    fun onMakeFilterChanged(makes: List<String>) {
+        selectedMakes.clear()
+        selectedMakes.addAll(makes)
+        applyFilters()
+    }
+
+    fun onTypeFilterChanged(types: List<String>) {
+        selectedTypes.clear()
+        selectedTypes.addAll(types)
+        applyFilters()
+    }
+
+    private fun applyFilters() {
+        val filteredMotorbikeList = motorbikeListAll.filter { motorbike ->
+            val resultSearchFilter = currentFilter.isBlank() || motorbike.model.contains(
+                currentFilter,
+                ignoreCase = true
+            )
+            val resultMakeFilter = selectedMakes.isEmpty() || selectedMakes.contains(motorbike.make)
+            val resultTypeFilter = selectedTypes.isEmpty() || selectedTypes.contains(motorbike.type)
+
+            resultSearchFilter && resultMakeFilter && resultTypeFilter
         }
 
         _uiState.postValue(
@@ -95,6 +112,14 @@ class MotorbikeListViewModel(
                 favoriteIdList = favoriteIdList
             )
         )
+    }
+
+    fun getSelectedMakes(): List<String> {
+        return selectedMakes.toList()
+    }
+
+    fun getSelectedTypes(): List<String> {
+        return selectedTypes.toList()
     }
 
     data class UiState(

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_primary">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/view_filters_toolbar" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/filter_make_container"
+        style="@style/motorbike_filters_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/make_title"
+                style="@style/motorbike_filters_title"
+                android:text="@string/motorbike_filters_make_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                style="@style/linear_layout_vertical"
+                app:layout_constraintTop_toBottomOf="@id/make_title">
+
+                <LinearLayout style="@style/linear_layout_horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkboxBenelli"
+                        style="@style/motorbike_filters_checkbox"
+                        android:text="@string/motorbike_filters_make_benelli_text" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/linear_layout_horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkboxBmw"
+                        style="@style/motorbike_filters_checkbox"
+                        android:text="@string/motorbike_filters_make_bmw_text" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/linear_layout_horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkboxDucati"
+                        style="@style/motorbike_filters_checkbox"
+                        android:text="@string/motorbike_filters_make_ducati_text" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/linear_layout_horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkboxKawasaki"
+                        style="@style/motorbike_filters_checkbox"
+                        android:text="@string/motorbike_filters_make_kawasaki_text" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/linear_layout_horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkboxKtm"
+                        style="@style/motorbike_filters_checkbox"
+                        android:text="@string/motorbike_filters_make_ktm_text" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/filter_type_container"
+        style="@style/motorbike_filters_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/filter_make_container">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/type_title"
+                style="@style/motorbike_filters_title"
+                android:text="@string/motorbike_filters_type_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                style="@style/linear_layout_vertical"
+                app:layout_constraintTop_toBottomOf="@id/type_title">
+
+                <LinearLayout style="@style/linear_layout_horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkboxSport"
+                        style="@style/motorbike_filters_checkbox"
+                        android:text="@string/motorbike_filters_type_sport_text" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/linear_layout_horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkboxCrossMotocross"
+                        style="@style/motorbike_filters_checkbox"
+                        android:text="@string/motorbike_filters_type_cross_motocross_text" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/linear_layout_horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkboxEnduroOffroad"
+                        style="@style/motorbike_filters_checkbox"
+                        android:text="@string/motorbike_filters_type_enduro_offroad_text" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/linear_layout_horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkboxNaked"
+                        style="@style/motorbike_filters_checkbox"
+                        android:text="@string/motorbike_filters_type_naked_text" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/linear_layout_horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkboxTrail"
+                        style="@style/motorbike_filters_checkbox"
+                        android:text="@string/motorbike_filters_type_trail_text" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/submit_button"
+        style="@style/motorbike_filters_submit_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/motorbike_filters_submit_button_text"
+            android:text="@string/motorbike_filters_toolbar_submit_button" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

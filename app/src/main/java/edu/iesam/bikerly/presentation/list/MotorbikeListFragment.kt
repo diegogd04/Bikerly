@@ -14,6 +14,7 @@ import com.faltenreich.skeletonlayout.applySkeleton
 import edu.iesam.bikerly.R
 import edu.iesam.bikerly.databinding.FragmentMotorbikeListBinding
 import edu.iesam.bikerly.domain.Motorbike
+import edu.iesam.bikerly.presentation.filters.FiltersDialogFragment
 import edu.iesam.bikerly.presentation.list.adapter.MotorbikeAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -69,6 +70,13 @@ class MotorbikeListFragment : Fragment() {
                     buttonSearch.visibility = View.GONE
                     searchBar.visibility = View.VISIBLE
                 }
+                buttonFilters.setOnClickListener {
+                    val dialog = FiltersDialogFragment.newInstance(
+                        viewModel.getSelectedMakes(),
+                        viewModel.getSelectedTypes()
+                    )
+                    dialog.show(parentFragmentManager, "FiltersDialog")
+                }
             }
         }
     }
@@ -78,6 +86,24 @@ class MotorbikeListFragment : Fragment() {
 
         setUpObserver()
         viewModel.loadInitialList()
+
+        parentFragmentManager.setFragmentResultListener(
+            "filters_result",
+            viewLifecycleOwner
+        ) { _, bundle ->
+            val makes = getStringArray(bundle, "makes")
+            val types = getStringArray(bundle, "types")
+            filtersListener(makes, types)
+        }
+    }
+
+    private fun getStringArray(bundle: Bundle, key: String): List<String> {
+        return bundle.getStringArray(key)?.toList().orEmpty()
+    }
+
+    private fun filtersListener(makes: List<String>, types: List<String>) {
+        viewModel.onMakeFilterChanged(makes)
+        viewModel.onTypeFilterChanged(types)
     }
 
     private fun setUpObserver() {
